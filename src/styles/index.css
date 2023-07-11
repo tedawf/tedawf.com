@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bkg: 224 224 224;
+    --color-content: 0 0 0;
+  }
+}

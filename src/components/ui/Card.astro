@@ -1,14 +1,19 @@
 ---
+const { classes, ...rest } = Astro.props;
 ---
 
 <div
-  class="neumorphic flex h-28 w-28 items-center justify-center rounded-3xl bg-[#e0e4e7] text-6xl font-bold"
+  class:list={[
+    "neu m-4 grid min-h-[300px] place-items-center rounded-3xl bg-bkg",
+    classes,
+  ]}
+  {...rest}
 >
   <slot />
 </div>
 
 <style>
-  .neumorphic {
-    box-shadow: 16px 16px 32px #bebebe, -16px -16px 32px #ffffff;
+  .neu {
+    box-shadow: 10px 10px 20px #bebebe, -10px -10px 20px #ffffff;
   }
 </style>

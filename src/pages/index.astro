@@ -1,5 +1,7 @@
 ---
-import Card from "../components/ui/Card.astro";
+import Hello from "../components/Hello.astro";
+import Socials from "../components/Socials.astro";
+import "../styles/index.css";
 ---
 
 <html lang="en">
@@ -10,11 +12,11 @@ import Card from "../components/ui/Card.astro";
     <meta name="generator" content={Astro.generator} />
     <title>Ted | Portfolio</title>
   </head>
-  <body class="flex h-screen items-center justify-center bg-[#f9f9f9]">
-    <div class="h-[600px] w-[800px] bg-[#e0e4e7] p-20">
-      <div class="flex flex-row">
-        <Card>UI</Card>
-      </div>
+  <body class="bg-bkg text-content">
+    <h1>Portfolio</h1>
+    <div class="grid grid-cols-12 grid-rows-6">
+      <Hello />
+      <Socials />
     </div>
   </body>
 </html>
