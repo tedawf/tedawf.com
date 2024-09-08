@@ -1,6 +1,5 @@
 import Image from "next/image";
-import React from "react";
-import mugshot from "@/assets/ted.jpg";
+import mugshot from "/public/ted.jpg";
 
 export default function Intro() {
   return (
@@ -9,9 +8,10 @@ export default function Intro() {
       <div className="mt-2 flex-1 md:mt-0">
         <h1 className="title">hi ted here 👋</h1>
         <p className="mt-3 font-light">
-          I build large-scale enterprise applications at work and experiment
-          with new technologies and frameworks at home, occasionally getting
-          coding help from my cat.
+          At work, I&#39;m dedicated to building large-scale enterprise
+          applications that drive real impact. I&#39;m just as passionate about
+          experimenting with cutting-edge frameworks and tech stacks at
+          home—with a little coding support from my cat.
         </p>
       </div>
       {/* Photo */}

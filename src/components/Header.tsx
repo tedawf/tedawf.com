@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React from "react";
 import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
@@ -13,14 +12,14 @@ export default function Header() {
           </Link>
         </div>
         {/* Nav links */}
-        <ul className="flex gap-6 text-muted-foreground">
-          <li className="transition-colors hover:text-foreground">
+        <ul className="flex gap-6">
+          <li className="link">
             <Link href="/projects">projects</Link>
           </li>
-          <li className="transition-colors hover:text-foreground">
-            <Link href="/notes">notes</Link>
+          <li className="link">
+            <Link href="/blog">blog</Link>
           </li>
-          <li className="transition-colors hover:text-foreground">
+          <li className="link">
             <Link href="/contact">contact</Link>
           </li>
         </ul>

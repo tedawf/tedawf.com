@@ -29,6 +29,16 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+
+    --sh-identifier: #354150;
+    --sh-keyword: #f47067;
+    --sh-string: #00a99a;
+    --sh-class: #8d85ff;
+    --sh-property: #4e8fdf;
+    --sh-entity: #6eafad;
+    --sh-jsxliterals: #bf7db6;
+    --sh-sign: #8996a3;
+    --sh-comment: #a19595;
   }
 
   .dark {
@@ -56,6 +66,11 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+
+    --sh-class: #4c97f8;
+    --sh-identifier: white;
+    --sh-keyword: #f47067;
+    --sh-string: #0fa295;
   }
 }
 
@@ -67,6 +82,21 @@
     @apply bg-background text-foreground;
   }
   .title {
-    @apply font-serif text-3xl font-bold decoration-border/75 decoration-2;
+    @apply font-serif text-3xl decoration-border/75 decoration-2;
+  }
+  .link {
+    @apply text-muted-foreground transition-colors hover:text-foreground;
+  }
+  .prose pre {
+    @apply overflow-x-auto rounded-lg bg-accent px-5 py-4 text-sm;
+  }
+  .prose pre code {
+    @apply p-0 leading-[1.75];
+  }
+  .prose code {
+    @apply rounded-lg px-1 py-0.5;
+  }
+  .prose code span {
+    @apply font-medium;
   }
 }
