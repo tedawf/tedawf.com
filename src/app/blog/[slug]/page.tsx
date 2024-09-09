@@ -1,9 +1,9 @@
+import LinkWithIcon from "@/components/LinkWithIcon";
 import MDXContent from "@/components/MDXContent";
 import { getPostBySlug, getPosts } from "@/lib/blog";
 import { formatDate } from "@/lib/utils";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
@@ -27,13 +27,12 @@ export default async function Post({ params }: { params: { slug: string } }) {
   return (
     <section className="py-24">
       <div className="container max-w-3xl">
-        <Link
+        <LinkWithIcon
           href="/blog"
-          className="link mb-8 inline-flex items-center gap-2 font-light"
-        >
-          <ArrowLeftIcon className="size-5" />
-          <span>back to blog</span>
-        </Link>
+          align="left"
+          icon={<ArrowLeftIcon className="size-5" />}
+          text="back to blog"
+        />
 
         {image && (
           <div className="relative mb-6 h-96 w-full overflow-hidden rounded-lg">
@@ -47,7 +46,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
         )}
 
         <header>
-          <h1 className="title underline underline-offset-8">{title}</h1>
+          <h1 className="title">{title}</h1>
           <p className="mt-2 text-xs text-muted-foreground">
             {formatDate(publishedAt ?? "")}
           </p>
