@@ -1,4 +1,4 @@
-import Posts from "@/components/Posts";
+import PostsWithSearch from "@/components/PostsWithSearch";
 import { getPosts } from "@/lib/blog";
 
 export default async function BlogPage() {
@@ -11,7 +11,7 @@ export default async function BlogPage() {
           notes. thoughts. opinions.
         </h1>
 
-        <Posts posts={posts} />
+        <PostsWithSearch posts={posts} />
       </div>
     </section>
   );
