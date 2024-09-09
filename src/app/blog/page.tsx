@@ -7,7 +7,9 @@ export default async function BlogPage() {
   return (
     <section className="pb-24 pt-40">
       <div className="container max-w-3xl">
-        <h1 className="title mb-12 underline underline-offset-8">Blog</h1>
+        <h1 className="title mb-12 underline underline-offset-8">
+          notes. thoughts. opinions.
+        </h1>
 
         <Posts posts={posts} />
       </div>

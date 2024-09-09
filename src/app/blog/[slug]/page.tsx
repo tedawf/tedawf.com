@@ -25,7 +25,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
           className="link mb-8 inline-flex items-center gap-2 font-light"
         >
           <ArrowLeftIcon className="size-5" />
-          <span>Back to blog</span>
+          <span>back to blog</span>
         </Link>
 
         {image && (
@@ -46,7 +46,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
           </p>
         </header>
 
-        <main className="prose dark:prose-invert mt-12">
+        <main className="prose mt-12 dark:prose-invert">
           <MDXContent source={content} />
         </main>
       </div>
