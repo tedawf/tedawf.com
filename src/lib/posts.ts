@@ -2,8 +2,6 @@ import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
 
-const rootDirectory = path.join(process.cwd(), "content", "blog");
-
 export type Post = {
   metadata: PostMetadata;
   content: string;
@@ -17,7 +15,10 @@ export type PostMetadata = {
   slug: string;
 };
 
-export async function getPostBySlug(slug: string): Promise<Post | null> {
+export async function getPostBySlug(
+  rootDirectory: string,
+  slug: string,
+): Promise<Post | null> {
   try {
     const filePath = path.join(rootDirectory, `${slug}.mdx`);
     const fileContents = await fs.readFileSync(filePath, { encoding: "utf-8" });
@@ -29,11 +30,14 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   }
 }
 
-export async function getPosts(limit?: number): Promise<PostMetadata[]> {
+export async function getPosts(
+  rootDirectory: string,
+  limit?: number,
+): Promise<PostMetadata[]> {
   const files = fs.readdirSync(rootDirectory);
 
   const posts = files
-    .map((file) => getPostMetaData(file))
+    .map((file) => getPostMetaData(rootDirectory, file))
     .sort(
       (a, b) =>
         (new Date(b.publishedAt ?? "").getTime() || 0) -
@@ -47,7 +51,10 @@ export async function getPosts(limit?: number): Promise<PostMetadata[]> {
   return posts;
 }
 
-export function getPostMetaData(filePath: string): PostMetadata {
+export function getPostMetaData(
+  rootDirectory: string,
+  filePath: string,
+): PostMetadata {
   const slug = filePath.replace(/\.mdx$/, "");
   const fullFilePath = path.join(rootDirectory, filePath);
   const fileContent = fs.readFileSync(fullFilePath, { encoding: "utf8" });

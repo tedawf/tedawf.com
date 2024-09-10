@@ -1,14 +1,20 @@
-import { PostMetadata } from "@/lib/blog";
+import { PostMetadata } from "@/lib/posts";
 import { formatDate } from "@/lib/utils";
 import Link from "next/link";
 
-export default function Posts({ posts }: { posts: PostMetadata[] }) {
+export default function Posts({
+  posts,
+  nav,
+}: {
+  posts: PostMetadata[];
+  nav: string;
+}) {
   return (
     <ul className="flex flex-col gap-8">
       {posts.map((post) => (
         <li key={post.slug}>
           <Link
-            href={`/blog/${post.slug}`}
+            href={`/${nav}/${post.slug}`}
             className="flex flex-col justify-between gap-x-4 gap-y-1 sm:flex-row"
           >
             <div className="max-w-md md:max-w-lg">

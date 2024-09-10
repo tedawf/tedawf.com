@@ -37,7 +37,7 @@ export default function Footer() {
           <div className="mt-8 md:order-1 md:mt-0">
             <p className="text-center text-xs text-muted-foreground">
               <span>&copy; {new Date().getFullYear()}</span>{" "}
-              <Link href="#">tedawf.com</Link>
+              <Link href="/">tedawf.com</Link>
             </p>
           </div>
         </div>

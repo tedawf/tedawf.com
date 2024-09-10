@@ -2,18 +2,16 @@
 title: TradingView Telegram Alerts
 summary: Real-time trading alerts with chart snapshots sent to Telegram, designed to keep traders informed and responsive to market changes.
 image: /desktop-ss.png
-publishedAt: "2024-09-07"
+publishedAt: "2024-03-11"
 ---
 
 TradingView Telegram Alerts is a real-time notification system designed to help traders stay on top of market movements without needing to constantly monitor charts. This tool automatically sends customized trading alerts directly to your Telegram, ensuring you never miss an opportunity. Whether it's price spikes, volume changes, or any other condition set within TradingView, this tool delivers the information you need, when you need it.
 
-## The Problem
+## The Problem And Solution
 
 My client often miss key opportunities because they can't monitor the markets 24/7. _(But they are always online on Telegram.. 🤔)_
 
 Constantly checking charts isn't practical, and TradingView's built-in notification system, while useful, isn't always enough to ensure traders stay ahead of the market in real time.
-
-## The Solution
 
 I built **TradingView Telegram Alerts** to solve this problem. This tool allows traders to set up personalized trading alerts based on their criteria in TradingView, which are then sent instantly to their Telegram account. No need to keep a constant eye on the charts—**the system sends the chart to you.**
 
@@ -38,11 +36,15 @@ This project leverages a variety of modern technologies to ensure speed, scalabi
 2. **Webhook Listener**: The FastAPI application listens for incoming alerts from TradingView and processes them.
 3. **Telegram Notification**: Once an alert is triggered, it’s forwarded instantly to your Telegram chat, along with a real-time snapshot of the chart for visual context.
 
-## Challenges & Learnings
+## What Did I Learnt?
 
 Building this tool presented several challenges, including ensuring real-time performance and managing multiple concurrent alerts. I optimized the webhook for high performance using **FastAPI's asynchronous capabilities** and leveraged **Selenium** to capture chart snapshots without disrupting the notification flow. These challenges taught me a lot about real-time data processing and integrating multiple APIs.
 
-## Future Enhancements
+Imagine setting specific trading conditions on TradingView—like price crosses or volume spikes—and getting notified the moment they happen, even if you're away from your trading platform. This system listens to TradingView’s alerts and forwards them to Telegram, giving you real-time updates.
+
+This project has the potential to be a game-changer for active traders. By automating the process of receiving real-time alerts and integrating visual snapshots, it allows traders to make quicker, more informed decisions. Whether you're a casual trader or a professional, this tool can help streamline your trading process.
+
+## Future Plans
 
 There are always ways to improve, and here are a few future plans:
 
@@ -50,15 +52,9 @@ There are always ways to improve, and here are a few future plans:
 - Build a web interface to easily configure TradingView alerts and manage settings.
 - Improve alert history tracking with a more robust logging system.
 
-## Project Impact
-
-Imagine setting specific trading conditions on TradingView—like price crosses or volume spikes—and getting notified the moment they happen, even if you're away from your trading platform. This system listens to TradingView’s alerts and forwards them to Telegram, giving you real-time updates.
-
-This project has the potential to be a game-changer for active traders. By automating the process of receiving real-time alerts and integrating visual snapshots, it allows traders to make quicker, more informed decisions. Whether you're a casual trader or a professional, this tool can help streamline your trading process.
-
 ## See It in Action
 
-Check out the project on [GitHub](https://github.com/tedawf/tradingview-telegram-alerts) for the source code and setup instructions.
+Check out the project on my [GitHub repo](https://github.com/tedawf/tradingview-telegram-alerts) for the source code and setup instructions.
 
 ---
 

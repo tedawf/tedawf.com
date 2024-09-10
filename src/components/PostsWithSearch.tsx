@@ -1,13 +1,19 @@
 "use client";
 
-import { PostMetadata } from "@/lib/blog";
+import { PostMetadata } from "@/lib/posts";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { useState } from "react";
+import Posts from "./Posts";
 import { Button } from "./ui/Button";
 import { Input } from "./ui/Input";
-import Posts from "./Posts";
 
-export default function PostsWithSearch({ posts }: { posts: PostMetadata[] }) {
+export default function PostsWithSearch({
+  posts,
+  nav,
+}: {
+  posts: PostMetadata[];
+  nav: string;
+}) {
   const [query, setQuery] = useState("");
   const filtered = posts.filter((post) =>
     post.title?.toLowerCase().includes(query.toLowerCase()),
@@ -39,7 +45,7 @@ export default function PostsWithSearch({ posts }: { posts: PostMetadata[] }) {
         )}
       </div>
 
-      <Posts posts={filtered} />
+      <Posts posts={filtered} nav={nav} />
     </div>
   );
 }

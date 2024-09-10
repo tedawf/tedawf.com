@@ -4,14 +4,14 @@ import React from "react";
 type LinkWithIconProps = {
   href: string;
   icon?: React.ReactNode;
-  align: "left" | "right";
+  position: "left" | "right";
   text?: string;
 };
 
 export default function LinkWithIcon({
   href,
   icon,
-  align,
+  position,
   text,
 }: LinkWithIconProps) {
   return (
@@ -19,9 +19,9 @@ export default function LinkWithIcon({
       href={href}
       className="link mb-8 inline-flex items-center gap-2 font-light"
     >
-      {align === "left" && icon}
+      {position === "left" && icon}
       <span>{text}</span>
-      {align === "right" && icon}
+      {position === "right" && icon}
     </Link>
   );
 }
