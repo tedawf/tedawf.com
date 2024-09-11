@@ -10,9 +10,9 @@ export default async function ProjectPage() {
   return (
     <section className="py-24">
       <div className="container max-w-3xl">
-        <h1 className="title mb-12">my work.</h1>
+        <h1 className="title mb-12">my projects.</h1>
 
-        <Posts posts={posts} nav="projects"/>
+        <Posts posts={posts} nav="projects" />
       </div>
     </section>
   );

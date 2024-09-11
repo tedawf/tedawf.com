@@ -1,7 +1,8 @@
 "use client";
 
-import { ThemeProvider } from "next-themes";
+import { ThemeProvider, useTheme } from "next-themes";
 import React from "react";
+import { Toaster } from "sonner";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -12,6 +13,18 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       disableTransitionOnChange
     >
       {children}
+      <ToastProvider />
     </ThemeProvider>
+  );
+}
+
+function ToastProvider() {
+  const { resolvedTheme } = useTheme();
+
+  return (
+    <Toaster
+      position="top-right"
+      theme={resolvedTheme === "dark" ? "dark" : "light"}
+    />
   );
 }

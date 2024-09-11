@@ -99,4 +99,7 @@
   .prose code span {
     @apply font-medium;
   }
+  .input-error {
+    @apply ml-1 mt-2 text-sm text-rose-400;
+  }
 }
