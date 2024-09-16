@@ -1,3 +1,4 @@
+import Chat from "@/components/Chat";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Providers from "@/components/Providers";
@@ -14,7 +15,7 @@ const calistoga = Calistoga({
 });
 
 export const metadata: Metadata = {
-  title: "Ted's Thoughts",
+  title: "Ted Thoughts",
   description: "My personal site to showcase my developer work and opinions.",
 };
 
@@ -35,6 +36,7 @@ export default function RootLayout({
         <Providers>
           <Header />
           <main className="grow">{children}</main>
+          <Chat />
           <Footer />
         </Providers>
       </body>
