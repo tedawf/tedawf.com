@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run gen && next build",
+    "gen": "npx ts-node ./scripts/generate.ts",
     "start": "next start",
     "lint": "next lint"
   },
@@ -47,6 +48,7 @@
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.6",
     "tailwindcss": "^3.4.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   },
   "resolutions": {
