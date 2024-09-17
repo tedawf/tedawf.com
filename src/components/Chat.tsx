@@ -20,47 +20,7 @@ export default function Chat() {
     setMessages,
     isLoading,
     error,
-  } = useChat({
-    initialMessages: [
-      {
-        id: "1",
-        role: "assistant",
-        content: "i am assistant",
-      },
-      {
-        id: "2",
-        role: "user",
-        content: "i am user",
-      },
-      {
-        id: "3",
-        role: "assistant",
-        content: "i am assistant again",
-      },
-      {
-        id: "4",
-        role: "user",
-        content: "i am user again",
-      },
-      {
-        id: "5",
-        role: "assistant",
-        content: "i am assistant again",
-      },
-      {
-        id: "6",
-        role: "user",
-        content: `[link](https://tedawf.com): 
-- item 1
-- item 2
-- item 3  
-
-what is const first = useRef(second)
-asdasdasda sn fa ksln aslknvk lasasadsad asdaasfls bvlkas vbakslas
-asdasdasd`,
-      },
-    ],
-  });
+  } = useChat();
 
   return (
     <Accordion type="single" collapsible className="relative z-40 shadow">
@@ -71,12 +31,17 @@ asdasdasd`,
               <ChatHeader />
             </AccordionTrigger>
             <AccordionContent className="flex h-80 flex-col p-0">
-              <ChatMessages messages={messages} />
+              <ChatMessages
+                messages={messages}
+                error={error}
+                isLoading={isLoading}
+              />
               <ChatInput
                 input={input}
                 handleSubmit={handleSubmit}
                 handleInputChange={handleInputChange}
                 setMessages={setMessages}
+                isLoading={isLoading}
               />
             </AccordionContent>
           </div>
