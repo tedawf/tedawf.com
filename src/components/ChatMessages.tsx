@@ -36,7 +36,7 @@ export default function ChatMessages({
 
       {/* empty */}
       {!error && messages.length === 0 && (
-        <div className="flex h-full flex-col items-center justify-center">
+        <div className="flex h-full flex-col items-center justify-center mt-16 gap-2">
           <Bot />
           <p className="font-medium">Send a message to start the chat!</p>
           <p className="text-center text-xs text-muted-foreground">

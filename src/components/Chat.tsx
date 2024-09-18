@@ -30,7 +30,7 @@ export default function Chat() {
             <AccordionTrigger className="border-b px-6">
               <ChatHeader />
             </AccordionTrigger>
-            <AccordionContent className="flex h-80 flex-col p-0">
+            <AccordionContent className="flex justify-between min-h-80 max-h-96 flex-col p-0">
               <ChatMessages
                 messages={messages}
                 error={error}
@@ -42,6 +42,7 @@ export default function Chat() {
                 handleInputChange={handleInputChange}
                 setMessages={setMessages}
                 isLoading={isLoading}
+                messages={messages}
               />
             </AccordionContent>
           </div>

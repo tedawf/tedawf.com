@@ -21,6 +21,7 @@ interface ChatInputProps extends HTMLAttributes<HTMLFormElement> {
     messages: Message[] | ((messages: Message[]) => Message[]),
   ) => void;
   isLoading: boolean;
+  messages: Message[];
 }
 
 export default function ChatInput({
@@ -29,14 +30,17 @@ export default function ChatInput({
   handleInputChange,
   setMessages,
   isLoading,
+  messages,
 }: ChatInputProps) {
+  console.log(messages)
   return (
     <form onSubmit={handleSubmit} className="flex gap-1 border-t px-2 py-3">
       <Button
         title="Clear chat"
-        variant="ghost"
+        variant="outline"
         onClick={() => setMessages([])}
         className="px-3 py-2"
+        disabled={messages.length === 0}
         type="button"
       >
         <Trash className="size-4 text-rose-500" />
@@ -44,7 +48,7 @@ export default function ChatInput({
       <Input
         autoFocus
         placeholder="Ask something..."
-        className="border-none bg-muted"
+        className="bg-muted"
         value={input}
         onChange={handleInputChange}
         onKeyDown={(e) => {
