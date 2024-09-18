@@ -58,7 +58,7 @@ export default function ChatInput({
         title="Send message"
         variant="default"
         className="px-3 py-2"
-        disabled={isLoading || input.length === 0}
+        disabled={input.length === 0}
         type="submit"
       >
         <SendHorizontal className="size-4" />

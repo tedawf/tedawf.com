@@ -15,7 +15,6 @@ async function generateEmbeddings() {
   (await getEmbeddingsCollection()).deleteMany({});
   (await Redis.fromEnv()).flushdb();
 
-
   const loader = new DirectoryLoader(
     "src/app",
     {
