@@ -49,7 +49,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
         </p>
       </header>
 
-      <main className="prose mt-12 dark:prose-invert">
+      <main className="prose dark:prose-invert">
         <MDXContent source={content} />
       </main>
     </article>

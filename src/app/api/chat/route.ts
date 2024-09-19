@@ -33,6 +33,7 @@ export async function POST(req: Request) {
       callbacks: [handlers],
       verbose: true, // logs to console
       cache,
+      temperature: 0,
     });
 
     const rephraseModel = new ChatOpenAI({
@@ -88,7 +89,7 @@ export async function POST(req: Request) {
       llm: chatModel,
       prompt,
       documentPrompt: PromptTemplate.fromTemplate(
-        "Page URL:\n{url}\n\nPage content:\n{page_content}",
+        "Page content:\n{page_content}",
       ),
       documentSeparator: "\n------\n",
     });
