@@ -23,30 +23,29 @@ export default function Chat() {
   } = useChat();
 
   return (
-    <Accordion type="single" collapsible className="relative z-40 shadow">
-      <AccordionItem value="item-1">
-        <div className="fixed bottom-8 right-8 w-80 rounded-md border bg-background">
-          <div className="flex h-full w-full flex-col">
-            <AccordionTrigger className="border-b px-6">
-              <ChatHeader />
-            </AccordionTrigger>
-            <AccordionContent className="flex justify-between min-h-80 max-h-96 flex-col p-0">
-              <ChatMessages
-                messages={messages}
-                error={error}
-                isLoading={isLoading}
-              />
-              <ChatInput
-                input={input}
-                handleSubmit={handleSubmit}
-                handleInputChange={handleInputChange}
-                setMessages={setMessages}
-                isLoading={isLoading}
-                messages={messages}
-              />
-            </AccordionContent>
-          </div>
-        </div>
+    <Accordion type="single" collapsible className="relative z-40">
+      <AccordionItem
+        value="item-1"
+        className="fixed bottom-8 right-8 w-80 rounded-md border bg-background"
+      >
+        <AccordionTrigger className="border-b px-6">
+          <ChatHeader />
+        </AccordionTrigger>
+        <AccordionContent className="flex max-h-96 min-h-80 flex-col justify-between p-0">
+          <ChatMessages
+            messages={messages}
+            error={error}
+            isLoading={isLoading}
+          />
+          <ChatInput
+            input={input}
+            handleSubmit={handleSubmit}
+            handleInputChange={handleInputChange}
+            setMessages={setMessages}
+            isLoading={isLoading}
+            messages={messages}
+          />
+        </AccordionContent>
       </AccordionItem>
     </Accordion>
   );

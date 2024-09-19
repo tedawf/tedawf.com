@@ -28,7 +28,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "flex min-h-screen flex-col font-sans antialiased",
+          "mx-auto flex min-h-screen max-w-3xl flex-col px-8 font-sans antialiased",
           inter.variable,
           calistoga.variable,
         )}
