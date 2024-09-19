@@ -3,11 +3,11 @@ import LinkWithIcon from "../components/LinkWithIcon";
 
 export default function NotFound() {
   return (
-    <section className="pb-24 pt-40">
+    <article className="mt-8 flex flex-col gap-8 pb-16">
       <div className="min-h-full px-4 sm:px-6 sm:py-24 md:grid md:place-items-center lg:px-8">
         <div className="mx-auto max-w-max">
-          <main className="sm:flex">
-            <p className="title text-muted-foreground sm:text-5xl">404</p>
+          <section className="sm:flex">
+            <p className="title text-muted-foreground">404</p>
             <div className="sm:ml-6">
               <div className="sm:border-l sm:border-gray-200 sm:pl-6">
                 <h1 className="title sm:text-5xl">
@@ -27,9 +27,9 @@ export default function NotFound() {
                 />
               </div>
             </div>
-          </main>
+          </section>
         </div>
       </div>
-    </section>
+    </article>
   );
 }
