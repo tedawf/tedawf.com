@@ -5,7 +5,7 @@ export interface Project {
   description: string;
   href?: string;
   image?: string;
-  tags: readonly string[];
+  technologies: readonly string[];
   links?: readonly {
     name: string;
     href: string;
@@ -20,7 +20,7 @@ export const projects: Project[] = [
       "Real-time trading alerts with chart snapshots sent to Telegram, designed to keep traders informed and responsive to market changes.",
     href: "",
     image: "/tv-tele-alerts.png",
-    tags: [
+    technologies: [
       "Python",
       "FastAPI",
       "Docker",
@@ -42,7 +42,15 @@ export const projects: Project[] = [
       "My personal portfolio/blog site with a chatbot trained to answer any questions regarding my website.",
     href: "https://tedawf.com",
     image: "/tedawf-com.png",
-    tags: ["Next.js", "TailwindCSS"],
+    technologies: [
+      "Next.js",
+      "TailwindCSS",
+      "LangChain",
+      "OpenAI",
+      "ChatGPT",
+      "Typescript",
+      "Vercel",
+    ],
     links: [
       {
         name: "Source",
