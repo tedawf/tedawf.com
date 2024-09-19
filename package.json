@@ -4,24 +4,36 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run gen && next build",
+    "gen": "npx ts-node ./scripts/generate.ts",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@datastax/astra-db-ts": "^1.4.1",
     "@hookform/resolvers": "^3.9.0",
+    "@langchain/community": "^0.3.1",
+    "@langchain/core": "^0.3.2",
+    "@langchain/openai": "^0.3.0",
+    "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-icons": "^1.3.0",
     "@radix-ui/react-slot": "^1.1.0",
+    "@upstash/redis": "^1.34.0",
+    "ai": "^3.3.35",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "dotenv": "^16.4.5",
     "gray-matter": "^4.0.3",
-    "lucide-react": "^0.438.0",
-    "next": "14.2.7",
+    "langchain": "^0.3.2",
+    "lucide-react": "^0.441.0",
+    "next": "^14.2.12",
     "next-mdx-remote": "^5.0.0",
     "next-themes": "^0.3.0",
+    "openai": "^4.61.1",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.53.0",
+    "react-markdown": "^9.0.1",
     "resend": "^4.0.0",
     "sonner": "^1.5.0",
     "sugar-high": "^0.7.0",
@@ -40,6 +52,10 @@
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.6",
     "tailwindcss": "^3.4.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
+  },
+  "resolutions": {
+    "@langchain/core": "0.3.1"
   }
 }

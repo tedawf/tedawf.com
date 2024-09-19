@@ -1,19 +1,12 @@
-import Posts from "@/components/Posts";
-import { getPosts } from "@/lib/posts";
-import path from "path";
-
-const projectDirectory = path.join(process.cwd(), "content", "projects");
+import Projects from "@/components/Projects";
+import { projects } from "@/data/Projects";
 
 export default async function ProjectPage() {
-  const posts = await getPosts(projectDirectory);
-
   return (
-    <section className="py-24">
-      <div className="container max-w-3xl">
-        <h1 className="title mb-12">my projects.</h1>
+    <article className="mt-8 flex flex-col gap-8 pb-16">
+      <h1 className="title">my projects.</h1>
 
-        <Posts posts={posts} nav="projects" />
-      </div>
-    </section>
+      <Projects projects={projects} />
+    </article>
   );
 }

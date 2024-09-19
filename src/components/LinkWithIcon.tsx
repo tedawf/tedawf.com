@@ -15,10 +15,7 @@ export default function LinkWithIcon({
   text,
 }: LinkWithIconProps) {
   return (
-    <Link
-      href={href}
-      className="link mb-8 inline-flex items-center gap-2 font-light"
-    >
+    <Link href={href} className="link flex items-center gap-2 font-light">
       {position === "left" && icon}
       <span>{text}</span>
       {position === "right" && icon}

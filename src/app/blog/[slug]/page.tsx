@@ -7,7 +7,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import path from "path";
 
-const blogDirectory = path.join(process.cwd(), "content", "blog");
+const blogDirectory = path.join(process.cwd(), "content");
 
 export async function generateStaticParams() {
   const posts = await getPosts(blogDirectory);
@@ -28,37 +28,30 @@ export default async function Post({ params }: { params: { slug: string } }) {
   const { title, image, publishedAt } = metadata;
 
   return (
-    <section className="py-24">
-      <div className="container max-w-3xl">
-        <LinkWithIcon
-          href="/blog"
-          position="left"
-          icon={<ArrowLeftIcon className="size-5" />}
-          text="back to blog"
-        />
+    <article className="mt-8 flex flex-col gap-8 pb-16">
+      <LinkWithIcon
+        href="/blog"
+        position="left"
+        icon={<ArrowLeftIcon className="size-5" />}
+        text="back to blog"
+      />
 
-        {image && (
-          <div className="relative mb-6 h-96 w-full overflow-hidden rounded-lg">
-            <Image
-              src={image}
-              alt={title || ""}
-              className="object-cover"
-              fill
-            />
-          </div>
-        )}
+      {image && (
+        <div className="relative mb-6 h-96 w-full overflow-hidden rounded-lg">
+          <Image src={image} alt={title || ""} className="object-cover" fill />
+        </div>
+      )}
 
-        <header>
-          <h1 className="title">{title}</h1>
-          <p className="mt-2 text-xs text-muted-foreground">
-            {formatDate(publishedAt ?? "")}
-          </p>
-        </header>
+      <header>
+        <h1 className="title">{title}</h1>
+        <p className="mt-2 text-xs text-muted-foreground">
+          {formatDate(publishedAt ?? "")}
+        </p>
+      </header>
 
-        <main className="prose mt-12 dark:prose-invert">
-          <MDXContent source={content} />
-        </main>
-      </div>
-    </section>
+      <main className="prose dark:prose-invert">
+        <MDXContent source={content} />
+      </main>
+    </article>
   );
 }

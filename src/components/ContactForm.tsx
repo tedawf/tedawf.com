@@ -41,7 +41,7 @@ export default function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(processForm)} className="mt-16 lg:flex-auto">
+    <form onSubmit={handleSubmit(processForm)}>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         {/* Name */}
         <div>
