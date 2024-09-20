@@ -43,7 +43,7 @@ export const projects: Project[] = [
     href: "https://tedawf.com",
     image: "/tedawf-com.png",
     technologies: [
-      "Next.js",
+      "NextJS",
       "TailwindCSS",
       "LangChain",
       "OpenAI",

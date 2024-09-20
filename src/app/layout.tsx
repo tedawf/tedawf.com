@@ -36,7 +36,6 @@ export default function RootLayout({
         <Providers>
           <Header />
           <main className="grow">{children}</main>
-          <Chat />
           <Footer />
         </Providers>
       </body>

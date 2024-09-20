@@ -37,6 +37,7 @@ export async function getPosts(
   const files = fs.readdirSync(rootDirectory);
 
   const posts = files
+    .filter((file) => file.endsWith(".mdx")) // might have .DS_Store?
     .map((file) => getPostMetaData(rootDirectory, file))
     .sort(
       (a, b) =>

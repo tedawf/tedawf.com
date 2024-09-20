@@ -42,9 +42,9 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit(processForm)}>
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
         {/* Name */}
-        <div>
+        <div className="h-16">
           <Input
             id="name"
             type="text"
@@ -52,14 +52,13 @@ export default function ContactForm() {
             autoComplete="given-name"
             {...register("name")}
           />
-
           {errors.name?.message && (
             <p className="input-error">{errors.name.message}</p>
           )}
         </div>
 
         {/* Email */}
-        <div>
+        <div className="h-16">
           <Input
             id="email"
             type="email"
@@ -70,24 +69,27 @@ export default function ContactForm() {
 
           {errors.email?.message && (
             <p className="input-error">{errors.email.message}</p>
+            // <p className="input-error">test</p>
           )}
         </div>
 
         {/* Message */}
-        <div className="sm:col-span-2">
+        <div className="h-32 sm:col-span-2">
           <Textarea
             rows={4}
             placeholder="Message"
             autoComplete="Message"
+            className="resize-none"
             {...register("message")}
           />
 
           {errors.message?.message && (
             <p className="input-error">{errors.message.message}</p>
+            // <p className="input-error">test</p>
           )}
         </div>
       </div>
-      <div className="mt-6">
+      <div className="mt-2">
         <Button
           type="submit"
           disabled={isSubmitting}

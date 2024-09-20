@@ -1,6 +1,6 @@
 import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import { IconProps } from "./Icons";
-import { Github, Linkedin } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 
 export const socials = [
   {
@@ -12,5 +12,10 @@ export const socials = [
     name: "GitHub",
     href: "https://github.com/tedawf",
     icon: (props: IconProps) => <Github {...props} />,
+  },
+  {
+    name: "Email",
+    href: "mailto:hello@tedawf.com",
+    icon: (props: IconProps) => <Mail {...props} />,
   },
 ];

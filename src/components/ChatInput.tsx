@@ -48,7 +48,7 @@ export default function ChatInput({
       <Input
         autoFocus
         placeholder="Ask something..."
-        className="bg-muted"
+        // className="bg-muted"
         value={input}
         onChange={handleInputChange}
         onKeyDown={(e) => {

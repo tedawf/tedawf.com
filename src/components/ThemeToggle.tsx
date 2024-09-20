@@ -4,6 +4,7 @@ import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { Button } from "./ui/Button";
+import { toast } from "sonner";
 
 export default function ThemeToggle() {
   const { setTheme, resolvedTheme } = useTheme();
@@ -19,7 +20,7 @@ export default function ThemeToggle() {
 
   return (
     <Button
-      size="sm"
+      size="icon"
       variant="ghost"
       onClick={() => {
         setTheme(resolvedTheme === "dark" ? "light" : "dark");

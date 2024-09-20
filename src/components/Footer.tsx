@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="flex flex-col items-center justify-center py-6 sm:flex-row-reverse sm:justify-between">
+    <footer className="flex flex-col items-center justify-center pb-32 sm:flex-row-reverse sm:justify-between">
       <section className="flex justify-center gap-6">
         {socials.map((item) => (
           <a
