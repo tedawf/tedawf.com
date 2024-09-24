@@ -1,6 +1,5 @@
-import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
-import { IconProps } from "./Icons";
 import { Github, Linkedin, Mail } from "lucide-react";
+import { IconProps } from "./Icons";
 
 export const socials = [
   {

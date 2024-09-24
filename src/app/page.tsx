@@ -1,11 +1,14 @@
 import LinkWithIcon from "@/components/LinkWithIcon";
 import Posts from "@/components/Posts";
 import Projects from "@/components/Projects";
-import { Badge } from "@/components/ui/Badge";
+import Timeline from "@/components/Timeline";
 import { Button } from "@/components/ui/Button";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/Tabs";
+import { education, work } from "@/data/Experience";
 import { projects } from "@/data/Projects";
 import { socials } from "@/data/Socials";
 import { getPosts } from "@/lib/posts";
+import { TabsContent } from "@radix-ui/react-tabs";
 import { ArrowRightIcon, FileDown } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -34,15 +37,20 @@ export default async function Home() {
             <span>{new Date().getFullYear() - 1997}</span>-year-old software
             developer from Singapore 🇸🇬
           </p>
-          <div className="mt-2 font-light">
-            I have an interest in full-stack development and these are my
-            recently used tech stack: <Badge variant="secondary">NextJS</Badge>
-            {", "}
-            <Badge variant="secondary">Golang</Badge>
-            {", "}
-            <Badge variant="secondary">Python</Badge>
-            {". "}
-          </div>
+          <p className="mt-2 font-light">
+            <span>
+              I have an interest in full-stack development, instant coffee, and
+              occasionally ask my cat{" "}
+            </span>
+            <Link
+              href="https://www.instagram.com/gomugomu.cat"
+              className="link font-semibold"
+            >
+              Luffy
+            </Link>
+            <span> for coding advice. </span>
+          </p>
+          <p className="mt-2 font-light">Ask the chatbot anything about me!</p>
           <section className="mt-8 flex items-center gap-8">
             <Link href="/resume.pdf" target="_blank">
               <Button variant="outline">
@@ -50,7 +58,7 @@ export default async function Home() {
                 <FileDown className="ml-2 size-5" />
               </Button>
             </Link>
-            <div className="flex gap-4">
+            <div className="flex gap-6">
               {socials.map((item) => (
                 <a
                   key={item.name}
@@ -66,6 +74,21 @@ export default async function Home() {
             </div>
           </section>
         </div>
+      </section>
+
+      <section>
+        <Tabs defaultValue="work">
+          <TabsList className="mb-2 grid w-full grid-cols-2">
+            <TabsTrigger value="work">Work</TabsTrigger>
+            <TabsTrigger value="education">Education</TabsTrigger>
+          </TabsList>
+          <TabsContent value="work">
+            <Timeline experience={work}></Timeline>
+          </TabsContent>
+          <TabsContent value="education">
+            <Timeline experience={education}></Timeline>
+          </TabsContent>
+        </Tabs>
       </section>
 
       <section className="flex flex-col gap-8">
