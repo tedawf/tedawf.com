@@ -6,7 +6,7 @@ export default function page() {
   return (
     <article className="prose mt-8 pb-16 dark:prose-invert">
       <div className="space-y-4">
-        <h1 className="title text-5xl">Privacy Policy</h1>
+        <h1 className="title text-5xl">privacy policy.</h1>
         <p>Last Updated: {lastUpdated}</p>
       </div>
       <div className="space-y-4">
@@ -23,13 +23,13 @@ export default function page() {
           creation, no tracking cookies, and definitely no sneaky data
           gathering.
         </p>
-        <h3>Chatbot Conversations</h3>
+        <h3>1. Chatbot Conversations</h3>
         <p>
           If you send a message through the chatbot, it might be stored for
           caching and training purposes. So please avoid sharing any
           confidential info in the chat.
         </p>
-        <h3>Contacting Me</h3>
+        <h3>2. Contact Info</h3>
         <p>
           If you reach out via email or the contact form, the info you provide
           is entirely up to you. I&apos;ll only use it to reply and have a
