@@ -16,8 +16,11 @@ import path from "path";
 
 const blogDirectory = path.join(process.cwd(), "content");
 
+const TED_BIRTH_YEAR = 1997;
+
 export default async function Home() {
   const posts = await getPosts(blogDirectory, 3); // max 3
+  let featuredProjects = projects.slice(0, 2); // max 2
 
   return (
     <article className="mt-8 flex flex-col gap-16 pb-16">
@@ -33,24 +36,24 @@ export default async function Home() {
         <div className="flex flex-col">
           <h1 className="title text-5xl">hi ted here 👋</h1>
           <p className="mt-4 font-light">
-            {/* Calculate my age */}
-            <span>{new Date().getFullYear() - 1997}</span>-year-old software
-            developer from Singapore 🇸🇬
+            {/* Update my age */}
+            <span>
+              {new Date().getFullYear() - TED_BIRTH_YEAR}
+            </span>-year-old <s>game</s> software developer from Singapore 🇸🇬
           </p>
           <p className="mt-2 font-light">
             <span>
-              I have an interest in full-stack development, instant coffee, and
-              occasionally ask my cat{" "}
+              I like to develop full-stack, make instant coffee and get coding
+              advice from my cat{" "}
             </span>
             <Link
               href="https://www.instagram.com/gomugomu.cat"
               className="link font-semibold"
             >
-              Luffy
+              Luffy.
             </Link>
-            <span> for coding advice. </span>
           </p>
-          <p className="mt-2 font-light">Ask the chatbot anything about me!</p>
+          <p className="mt-4 font-light">Ask the chatbot anything about me!</p>
           <section className="mt-8 flex items-center gap-8">
             <Link href="/resume.pdf" target="_blank">
               <Button variant="outline">
@@ -101,7 +104,7 @@ export default async function Home() {
             text="view more"
           />
         </div>
-        <Projects projects={projects} />
+        <Projects projects={featuredProjects} />
       </section>
 
       <section className="flex flex-col gap-8">

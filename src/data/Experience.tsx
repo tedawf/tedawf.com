@@ -1,3 +1,5 @@
+import { Icons } from "./Icons";
+
 export interface Experience {
   name: string;
   href: string;
@@ -6,51 +8,65 @@ export interface Experience {
   start: string;
   end?: string;
   description?: string[];
+  links?: readonly {
+    name: string;
+    href: string;
+    icon: React.ReactElement;
+  }[];
 }
 
 export const work: Experience[] = [
   {
     name: "DBS Bank",
     href: "https://www.dbs.com.sg",
-    title: "Graduate Associate (SEED)",
+    title: "Graduate Associate (SEED Programme)",
     logo: "/dbs.png",
     start: "Jul 2023",
     description: [
-      "Developed the Java backend for an account servicing process with multiple channel integrations using Activiti workflow",
-      "Built a custom database migration tool using Python and MariaDB and lead the migration of 1000+ custom BPMN workflows in-house",
+      "Developed the Java backend for a bank account servicing process with multiple channel integrations using Activiti workflow",
+      "Built a custom database migration tool using Python and MariaDB and facilitated the migration of 1000+ processes from a vendor platform",
     ],
   },
   {
-    name: "Centre for Immersification (SIT)",
-    href: "https://www.immersification.org/",
-    title: "Software Engineer (Intern)",
+    name: "Singapore Institute of Technology",
+    href: "https://www.singaporetech.edu.sg",
+    title: "Software Developer (Contract)",
     logo: "/sit.png",
     start: "Apr 2023",
     end: "Jun 2023",
     description: [
-      "Worked on a full-stack web application (React + Python) that uses Meshroom to reconstruct 3D models from captured images",
+      "Built NFTVue, a NFT gallery website that allows students to connect their crypto wallets to view and verify their school event-issued NFTs",
+      "Worked on DemoConstruct, a full-stack web application (React + Python) that uses Meshroom to reconstruct 3D models from captured images",
     ],
-  },
-  {
-    name: "Centre for Digital Enablement (SIT)",
-    href: "https://www.singaporetech.edu.sg/about/centre-digital-enablement-code",
-    title: "Software Engineer (Contract)",
-    logo: "/sit.png",
-    start: "Apr 2023",
-    end: "Jun 2023",
-    description: [
-      "Built NFTVue, a NFT gallery website that allows students to connect their crypto wallets to view and verify their event-issued NFTs",
+    links: [
+      {
+        name: "NFTVue",
+        href: "https://nftvue.vercel.app",
+        icon: <Icons.globe className="size-3" />,
+      },
     ],
   },
   {
     name: "DBS Bank",
     href: "https://www.dbs.com.sg",
-    title: "Software Engineer (Intern)",
+    title: "Software Developer (Intern)",
     logo: "/dbs.png",
-    start: "Apr 2023",
-    end: "Jun 2023",
+    start: "May 2022",
+    end: "Dec 2022",
     description: [
-      "Built NFTVue, a NFT gallery website that allows students to connect their crypto wallets to view and verify their event-issued NFTs",
+      "Worked on the backend for the digital exchange and asset custody application using Spring Boot and Java",
+      "Built an admin dashboard web application for a DBS Metaverse event using Spring Security and Angular",
+    ],
+  },
+  {
+    name: "Activate Interactive Pte Ltd",
+    href: "https://www.activate.sg",
+    title: "Software Developer (Intern)",
+    logo: "/activate.png",
+    start: "May 2019",
+    end: "Aug 2019",
+    description: [
+      "Developed RP Connect, the iOS and Android mobile app for Republic Polytechnic (RP) using React Native",
     ],
   },
 ];
@@ -64,8 +80,20 @@ export const education: Experience[] = [
     start: "Sep 2019",
     end: "Apr 2023",
     description: [
-      "President of Digipen Student Management Committee 2019",
+      "President of Digipen Student Management Committee AY20/21",
       "3-time recipient of the Dean's Honor List",
+    ],
+    links: [
+      {
+        name: "Final Year Project",
+        href: "https://games.digipen.edu/games/rapid-ride-fight",
+        icon: <Icons.globe className="size-3" />,
+      },
+      {
+        name: "2nd Year Project",
+        href: "https://games.digipen.edu/games/glowing-under",
+        icon: <Icons.globe className="size-3" />,
+      },
     ],
   },
   {

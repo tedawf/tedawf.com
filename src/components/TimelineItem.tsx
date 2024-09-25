@@ -1,13 +1,15 @@
 import { Experience } from "@/data/Experience";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/Avatar";
+import { Badge } from "./ui/Badge";
 
 interface Props {
   experience: Experience;
 }
 
 export default function TimelineItem({ experience }: Props) {
-  const { name, href, title, logo, start, end, description } = experience;
+  const { name, href, title, logo, start, end, description, links } =
+    experience;
 
   return (
     <li className="relative ml-10 py-4">
@@ -38,25 +40,25 @@ export default function TimelineItem({ experience }: Props) {
         {description && (
           <ul className="ml-4 list-outside list-disc">
             {description.map((desc, i) => (
-              <li key={i} className="prose text-sm dark:prose-invert">
+              <li key={i} className="prose pr-8 text-sm dark:prose-invert">
                 {desc}
               </li>
             ))}
           </ul>
         )}
       </div>
-      {/* {links && links.length > 0 && (
+      {links && links.length > 0 && (
         <div className="mt-2 flex flex-row flex-wrap items-start gap-2">
           {links?.map((link, idx) => (
             <Link href={link.href} key={idx}>
-              <Badge key={idx} title={link.title} className="flex gap-2">
+              <Badge key={idx} title={link.name} className="flex gap-2">
                 {link.icon}
-                {link.title}
+                {link.name}
               </Badge>
             </Link>
           ))}
         </div>
-      )} */}
+      )}
     </li>
   );
 }

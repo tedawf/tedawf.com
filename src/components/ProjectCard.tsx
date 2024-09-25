@@ -16,7 +16,7 @@ interface Props {
 }
 
 export function ProjectCard({ project }: Props) {
-  const { name, href, description, image, technologies, links } = project;
+  const { name, href, description, image, tags, links } = project;
 
   return (
     <Card className="flex flex-col">
@@ -40,9 +40,9 @@ export function ProjectCard({ project }: Props) {
         </Markdown>
       </CardContent>
       <CardFooter className="flex h-full flex-col items-start justify-between gap-4">
-        {technologies && technologies.length > 0 && (
+        {tags && tags.length > 0 && (
           <div className="mt-2 flex flex-wrap gap-1">
-            {technologies.toSorted().map((tag) => (
+            {tags.toSorted().map((tag) => (
               <Badge
                 key={tag}
                 className="px-1 py-0 text-[10px]"
