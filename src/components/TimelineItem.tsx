@@ -1,7 +1,8 @@
-import { Experience } from "@/data/Experience";
+import { Experience } from "@/lib/schemas";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/Avatar";
 import { Badge } from "./ui/Badge";
+import Icon from "./Icon";
 
 interface Props {
   experience: Experience;
@@ -52,7 +53,7 @@ export default function TimelineItem({ experience }: Props) {
           {links?.map((link, idx) => (
             <Link href={link.href} key={idx}>
               <Badge key={idx} title={link.name} className="flex gap-2">
-                {link.icon}
+                <Icon name={link.icon} aria-hidden="true" className="size-3" />
                 {link.name}
               </Badge>
             </Link>

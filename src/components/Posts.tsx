@@ -4,13 +4,11 @@ import Link from "next/link";
 import { Card } from "./ui/Card";
 import { Separator } from "./ui/Separator";
 
-export default function Posts({
-  posts,
-  nav,
-}: {
+interface Props {
   posts: PostMetadata[];
-  nav: string;
-}) {
+}
+
+export default function Posts({ posts }: Props) {
   return (
     posts.length > 0 && (
       <Card>
@@ -18,7 +16,7 @@ export default function Posts({
           {posts.map((post, i) => (
             <li key={i}>
               {i !== 0 && i !== posts.length && <Separator />}
-              <Link href={`/${nav}/${post.slug}`}>
+              <Link href={`/blog/${post.slug}`}>
                 <div className="flex flex-col justify-between p-6 sm:flex-row sm:items-center">
                   <div className="max-w-md md:max-w-lg">
                     <h3 className="text-lg font-semibold">{post.title}</h3>

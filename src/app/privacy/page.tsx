@@ -10,7 +10,7 @@ export default function page() {
         <p>Last Updated: {lastUpdated}</p>
       </div>
       <div className="space-y-4">
-        <h2 className="title">Hey, Welcome!</h2>
+        <h2 className="title text-3xl">Hey, Welcome!</h2>
         <p>
           Thanks for stopping by! This <b>Privacy Policy</b> is just here to let
           you know how things work around here. My website is mainly about

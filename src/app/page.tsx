@@ -1,26 +1,21 @@
+import Experience from "@/components/Experience";
 import LinkWithIcon from "@/components/LinkWithIcon";
 import Posts from "@/components/Posts";
 import Projects from "@/components/Projects";
-import Timeline from "@/components/Timeline";
+import Socials from "@/components/Socials";
 import { Button } from "@/components/ui/Button";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/Tabs";
-import { education, work } from "@/data/Experience";
-import { projects } from "@/data/Projects";
-import { socials } from "@/data/Socials";
 import { getPosts } from "@/lib/posts";
-import { TabsContent } from "@radix-ui/react-tabs";
 import { ArrowRightIcon, FileDown } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import path from "path";
 
 const blogDirectory = path.join(process.cwd(), "content");
-
 const TED_BIRTH_YEAR = 1997;
+const LIMIT = 2; // max show 2
 
 export default async function Home() {
-  const posts = await getPosts(blogDirectory, 3); // max 3
-  let featuredProjects = projects.slice(0, 2); // max 2
+  const posts = await getPosts(blogDirectory, LIMIT);
 
   return (
     <article className="mt-8 flex flex-col gap-16 pb-16">
@@ -37,23 +32,23 @@ export default async function Home() {
           <h1 className="title text-5xl">hi ted here 👋</h1>
           <p className="mt-4 font-light">
             {/* Update my age */}
-            <span>
-              {new Date().getFullYear() - TED_BIRTH_YEAR}
-            </span>-year-old <s>game</s> software developer from Singapore 🇸🇬
+            {new Date().getFullYear() - TED_BIRTH_YEAR}
+            -year-old <s>game</s> software developer from Singapore 🇸🇬
           </p>
           <p className="mt-2 font-light">
-            <span>
-              I like to develop full-stack, make instant coffee and get coding
-              advice from my cat{" "}
-            </span>
+            I like to develop full-stack, make instant coffee and get coding
+            advice from my cat{" "}
             <Link
               href="https://www.instagram.com/gomugomu.cat"
+              target="_blank"
               className="link font-semibold"
             >
               Luffy.
             </Link>
           </p>
-          <p className="mt-4 font-light">Ask the chatbot anything about me!</p>
+          <p className="mt-4 font-semibold">
+            Ask the chatbot anything about me!
+          </p>
           <section className="mt-8 flex items-center gap-8">
             <Link href="/resume.pdf" target="_blank">
               <Button variant="outline">
@@ -61,38 +56,12 @@ export default async function Home() {
                 <FileDown className="ml-2 size-5" />
               </Button>
             </Link>
-            <div className="flex gap-6">
-              {socials.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-muted-foreground hover:text-foreground"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span className="sr-only">{item.name}</span>
-                  <item.icon aria-hidden="true" className="size-5" />
-                </a>
-              ))}
-            </div>
+            <Socials />
           </section>
         </div>
       </section>
 
-      <section>
-        <Tabs defaultValue="work">
-          <TabsList className="mb-2 grid w-full grid-cols-2">
-            <TabsTrigger value="work">Work</TabsTrigger>
-            <TabsTrigger value="education">Education</TabsTrigger>
-          </TabsList>
-          <TabsContent value="work">
-            <Timeline experience={work}></Timeline>
-          </TabsContent>
-          <TabsContent value="education">
-            <Timeline experience={education}></Timeline>
-          </TabsContent>
-        </Tabs>
-      </section>
+      <Experience />
 
       <section className="flex flex-col gap-8">
         <div className="flex justify-between">
@@ -104,7 +73,7 @@ export default async function Home() {
             text="view more"
           />
         </div>
-        <Projects projects={featuredProjects} />
+        <Projects limit={LIMIT} />
       </section>
 
       <section className="flex flex-col gap-8">
@@ -117,7 +86,7 @@ export default async function Home() {
             text="view more"
           />
         </div>
-        <Posts posts={posts} nav="blog" />
+        <Posts posts={posts} />
       </section>
     </article>
   );

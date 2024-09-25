@@ -70,7 +70,6 @@ export default function ContactForm() {
 
           {errors.email?.message && (
             <p className="input-error">{errors.email.message}</p>
-            // <p className="input-error">test</p>
           )}
         </div>
 
@@ -78,7 +77,7 @@ export default function ContactForm() {
         <div className="h-32 sm:col-span-2">
           <Textarea
             rows={4}
-            placeholder="Leave feedback about the site, career opportunities or just say hello"
+            placeholder="Leave feedback about the site, career opportunities or just to say hello etc."
             autoComplete="Message"
             className="resize-none"
             {...register("message")}
@@ -86,7 +85,6 @@ export default function ContactForm() {
 
           {errors.message?.message && (
             <p className="input-error">{errors.message.message}</p>
-            // <p className="input-error">test</p>
           )}
         </div>
       </div>
@@ -110,7 +108,7 @@ export default function ContactForm() {
         </Button>
         <p className="mt-4 text-xs text-muted-foreground">
           By submitting this form, I agree to the{" "}
-          <Link href="/privacy" className="link font-bold">
+          <Link href="/privacy" className="link font-semibold">
             privacy&nbsp;policy.
           </Link>
         </p>

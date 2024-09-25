@@ -7,13 +7,11 @@ import Posts from "./Posts";
 import { Button } from "./ui/Button";
 import { Input } from "./ui/Input";
 
-export default function PostsWithSearch({
-  posts,
-  nav,
-}: {
+interface Props {
   posts: PostMetadata[];
-  nav: string;
-}) {
+}
+
+export default function PostsWithSearch({ posts }: Props) {
   const [query, setQuery] = useState("");
   const filtered = posts.filter((post) =>
     post.title?.toLowerCase().includes(query.toLowerCase()),
@@ -41,7 +39,7 @@ export default function PostsWithSearch({
         </Button>
       </div>
 
-      <Posts posts={filtered} nav={nav} />
+      <Posts posts={filtered} />
     </div>
   );
 }

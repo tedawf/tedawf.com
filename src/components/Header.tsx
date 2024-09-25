@@ -1,7 +1,25 @@
-import { navLinks } from "@/data/NavLinks";
 import Link from "next/link";
-import ThemeToggle from "./ThemeToggle";
 import ChatToggle from "./ChatToggle";
+import ThemeToggle from "./ThemeToggle";
+
+const navLinks = [
+  {
+    name: "home",
+    href: "/",
+  },
+  {
+    name: "projects",
+    href: "/projects",
+  },
+  {
+    name: "blog",
+    href: "/blog",
+  },
+  {
+    name: "contact",
+    href: "/contact",
+  },
+];
 
 export default function Header() {
   return (

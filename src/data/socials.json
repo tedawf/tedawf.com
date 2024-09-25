@@ -1,0 +1,17 @@
+[
+  {
+    "name": "LinkedIn",
+    "href": "https://linkedin.com/in/tedawf",
+    "icon": "linkedin"
+  },
+  {
+    "name": "GitHub",
+    "href": "https://github.com/tedawf",
+    "icon": "github"
+  },
+  {
+    "name": "Email",
+    "href": "mailto:hello@tedawf.com",
+    "icon": "mail"
+  }
+]
