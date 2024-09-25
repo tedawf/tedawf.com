@@ -1,9 +1,9 @@
-import s from "@/data/socials.json";
-import { linkSchema } from "@/lib/schemas";
+import data from "@/data/socials.json";
+import { socialSchema } from "@/lib/schemas";
 import Icon from "./Icon";
 
 export default function Socials() {
-  const socials = linkSchema.parse(s);
+  const socials = socialSchema.parse(data).socials;
 
   return (
     <section className="flex gap-6">

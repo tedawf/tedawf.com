@@ -1,4 +1,4 @@
-import p from "@/data/projects.json";
+import data from "@/data/projects.json";
 import { projectSchema } from "@/lib/schemas";
 import { ProjectCard } from "./ProjectCard";
 
@@ -7,9 +7,9 @@ interface Props {
 }
 
 export default function Projects({ limit }: Props) {
-  let projects = projectSchema.parse(p);
+  let projects = projectSchema.parse(data).projects;
   if (limit) {
-    projects.slice(0, limit);
+    projects = projects.slice(0, limit);
   }
 
   return (

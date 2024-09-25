@@ -42,33 +42,19 @@ async function generateEmbeddings() {
       return { pageContent: pageContentTrimmed, metadata: { url } };
     });
 
-  console.log(routes);
+  // console.log(routes);
 
   const routesSplitter = RecursiveCharacterTextSplitter.fromLanguage("html");
   const splitRoutes = await routesSplitter.splitDocuments(routes);
 
   // resume data
-  const dataLoader = new DirectoryLoader(
-    "src/data",
-    {
-      ".tsx": (path) => new TextLoader(path),
-    },
-    true,
-  );
+  const dataLoader = new DirectoryLoader("src/data", {
+    ".json": (path) => new TextLoader(path),
+  });
 
-  const data = (await dataLoader.load())
-    .filter((data) => data.metadata.source.endsWith(".tsx"))
-    .map((data): DocumentInterface => {
-      const pageContentTrimmed = data.pageContent
-        .replace(/^import.*$/gm, "") // remove all import statements
-        .replace(/ className=(["']).*?\1| className={.*?}/g, "") // remove all className props
-        .replace(/^\s*[\r]/gm, "") // remove empty lines
-        .trim();
+  const data = await dataLoader.load();
 
-      return { pageContent: pageContentTrimmed, metadata: data.metadata };
-    });
-
-  console.log(data);
+  // console.log(data);
 
   const dataSplitter = RecursiveCharacterTextSplitter.fromLanguage("js");
   const splitData = await dataSplitter.splitDocuments(data);
@@ -89,7 +75,9 @@ async function generateEmbeddings() {
 
       return { pageContent: pageContentTrimmed, metadata: post.metadata };
     });
-  console.log(posts);
+
+  // console.log(posts);
+
   const postSplitter = RecursiveCharacterTextSplitter.fromLanguage("markdown");
   const splitPosts = await postSplitter.splitDocuments(posts);
 
