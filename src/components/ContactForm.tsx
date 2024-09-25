@@ -10,6 +10,7 @@ import { z } from "zod";
 import { Button } from "./ui/Button";
 import { Input } from "./ui/Input";
 import { Textarea } from "./ui/Textarea";
+import Link from "next/link";
 
 type Inputs = z.infer<typeof ContactFormSchema>;
 
@@ -77,7 +78,7 @@ export default function ContactForm() {
         <div className="h-32 sm:col-span-2">
           <Textarea
             rows={4}
-            placeholder="Message"
+            placeholder="Leave feedback about the site, career opportunities or just say hello"
             autoComplete="Message"
             className="resize-none"
             {...register("message")}
@@ -107,13 +108,12 @@ export default function ContactForm() {
             </div>
           )}
         </Button>
-        {/* <p className="mt-4 text-xs text-muted-foreground">
+        <p className="mt-4 text-xs text-muted-foreground">
           By submitting this form, I agree to the{" "}
           <Link href="/privacy" className="link font-bold">
             privacy&nbsp;policy.
           </Link>
-          
-        </p> */}
+        </p>
       </div>
     </form>
   );
