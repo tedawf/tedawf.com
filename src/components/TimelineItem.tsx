@@ -33,7 +33,7 @@ export default function TimelineItem({ experience }: Props) {
           <time className="text-xs text-muted-foreground">
             <span>{start}</span>
             <span>{" - "}</span>
-            <span>{end ? end : "Current"}</span>
+            <span>{end ? end : "Present"}</span>
           </time>
         )}
         <h2 className="font-semibold leading-none">{name}</h2>
