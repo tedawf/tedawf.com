@@ -40,7 +40,7 @@ export default async function Home() {
             -year-old <s>game</s> software developer from Singapore 🇸🇬
           </p>
           <p className="mt-2 font-light">
-            I like to develop full-stack, drink instant coffee and get coding
+            I like to develop full-stack, self-hosting homelabs and get coding
             advice from my cat,{" "}
             <Link
               href="https://www.instagram.com/gomugomu.cat"

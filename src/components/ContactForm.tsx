@@ -77,7 +77,7 @@ export default function ContactForm() {
         <div className="h-32 sm:col-span-2">
           <Textarea
             rows={4}
-            placeholder="Leave feedback about the site, career opportunities or just to say hello etc."
+            placeholder="Leave feedback about the site, career opportunities or just to say hello etc. (BTW, I can't reply if the email provided is not real!)"
             autoComplete="Message"
             className="resize-none"
             {...register("message")}
