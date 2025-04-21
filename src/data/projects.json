@@ -1,6 +1,38 @@
 {
   "projects": [
     {
+      "name": "TT4D",
+      "description": "Generate winning combinations, view past results, and analyze lottery trends all in one place",
+      "image": "/tt4d.png",
+      "tags": [
+        "Python",
+        "FastAPI",
+        "Docker",
+        "Fly.io",
+        "NextJS",
+        "PostgreSQL",
+        "TailwindCSS",
+        "BS4"
+      ],
+      "links": [
+        {
+          "name": "Website",
+          "href": "https://tt4d.vercel.app",
+          "icon": "globe"
+        },
+        {
+          "name": "Source",
+          "href": "https://github.com/tedawf/tt4d",
+          "icon": "github"
+        },
+        {
+          "name": "Source (UI)",
+          "href": "https://github.com/tedawf/tt4d-web",
+          "icon": "github"
+        }
+      ]
+    },
+    {
       "name": "Tradingview Telegram Alerts",
       "description": "Real-time trading alerts with chart snapshots sent to Telegram, designed to keep traders informed and responsive to market changes",
       "image": "/tv-tele-alerts.png",

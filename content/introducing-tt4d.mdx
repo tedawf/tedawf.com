@@ -1,0 +1,89 @@
+---
+title: "Introducing TT4D – My Fullstack Lottery Playground"
+summary: "Generate winning combinations, view past results, and analyze lottery trends all in one place."
+image: "/tt4d.png"
+publishedAt: "2025-04-22"
+---
+
+Hey there! I'm super excited to share one of my recent side projects: **TT4D**, short for *Toto & 4D*. It’s a fullstack web application that lets you:
+
+- View historical Toto and 4D results  
+- Analyze trends  
+- Generate your own *lucky numbers*  
+
+This one’s especially close to home — *Toto and 4D are a true Singaporean favourite*. If you've ever waited for the 6:30pm draw results to drop or picked numbers based on car plates and birthdays, you’ll know what I mean. 😉
+
+For now, the app focuses on **Toto** first — I wanted to build a solid **proof of concept** before expanding into 4D. Don’t worry, **4D support is coming soon**. 🚧
+
+👉 **Live here:** [tt4d.vercel.app](https://tt4d.vercel.app)  
+👨‍💻 **Source code:** [Backend](https://github.com/tedawf/tt4d) | [Frontend](https://github.com/tedawf/tt4d-web)
+
+---
+
+## 🧪 Why TT4D?
+
+This is a **proof of concept** to explore how well this idea resonates with others. I wanted to see if combining historical lottery data with a slick, responsive UI could be both useful and fun. This project is part experiment, part playground — and 100% a learning opportunity.
+
+And just to be clear — I’m **not a gambling addict** 😅  
+This is purely for **fun** and **personal development**. I love building things that make data accessible, fast, and maybe even a bit playful.
+
+---
+
+## 🛠️ The Tech Stack
+
+This was a fullstack build, powered by:
+
+- **Python** + **FastAPI** for the backend
+- **PostgreSQL** for storing 50+ years of draw results
+- **Docker** + **Fly.io** for deployment
+- **Next.js 15** for the frontend, statically rendered for max speed
+- **TailwindCSS** + **shadcn/ui** for clean, modern styling
+- **BS4 (BeautifulSoup4)** for scraping historical data
+
+---
+
+## 🧩 Challenges & Highlights
+
+Everything started with the data. I scraped thousands of results, and here’s the kicker — over the years, the format *kept changing*. Some results had missing sections, and I had to write custom logic to make sure everything got parsed correctly and stored cleanly.
+
+Once that was done, I spun up a simple, no-nonsense API using FastAPI. Then came the fun part — building the UI.
+
+I used **Next.js 15** with static rendering to make the experience feel buttery smooth. The app supports **instant search**, **pagination**, and **optimized fetching**, so you can sift through *decades* of data without lag.
+
+Yes, that's **over 50 years of draw results** served instantly. This is honestly the part I’m most proud of. 🥹
+
+---
+
+## 🔮 A Little Fun with RNG
+
+I added a **random number generator** for fun — just in case you're feeling lucky. 😏  
+If you *actually* strike Toto using it, do come back and say hi. (Or buy me kopi? 👀)
+
+---
+
+## 🚀 What’s Next?
+
+This is just the start. Some features I’d love to experiment with:
+
+- ✨ Deeper **statistical analysis** (like hot/cold numbers and frequency trends)
+- 📊 Cleaner, more **visual data presentation**
+- 🎰 A smarter, more **robust number generator**
+- 🧠 Maybe even a quirky twist with **blockchain or NFTs** just for fun?
+
+Also on the roadmap: **4D integration** — stay tuned for that!
+
+---
+
+## 🔗 Links
+
+- 🌐 [Website](https://tt4d.vercel.app)
+- 🧠 [Source (Backend)](https://github.com/tedawf/tt4d)
+- 🎨 [Source (UI)](https://github.com/tedawf/tt4d-web)
+
+---
+
+Thanks for reading, and let me know what you think! Whether you’re into data, clean UIs, or just like a good side project story — I hope TT4D gave you a spark of inspiration.
+
+
+- Ted
+
