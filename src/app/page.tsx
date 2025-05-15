@@ -6,9 +6,10 @@ import Socials from "@/components/Socials";
 import { Button } from "@/components/ui/Button";
 import { getPosts } from "@/lib/posts";
 import {
+  ArrowDown,
   ArrowDownRight,
   ArrowRightIcon,
-  FileDown
+  FileDown,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -33,27 +34,37 @@ export default async function Home() {
           priority
         />
         <div className="flex flex-col">
-          <h1 className="title text-5xl">hi ted here 👋</h1>
-          <p className="mt-4 font-light">
+          <h1 className="title text-5xl">hi ted here. 👋</h1>
+          <p className="mt-2 font-medium">
             {/* Update my age */}
             {new Date().getFullYear() - TED_BIRTH_YEAR}
-            -year-old <s>game</s> software developer from Singapore 🇸🇬
+            yo software engineer from Singapore 🇸🇬
           </p>
-          <p className="mt-2 font-light">
-            I like to develop full-stack, self-hosting homelabs and get coding
-            advice from my cat,{" "}
+          <p className="mt-8 max-w-sm">
+            Backend by trade, full-stack by passion. I build and self-host the
+            lot.
+          </p>
+
+          <div className="mt-8 flex items-end gap-1">
+            <p className="font-semibold">
+              For any Q&A, raise a ticket with Ted Support
+            </p>
+            <ArrowDownRight className="hidden size-5 animate-bounce sm:block" />
+            <ArrowDown className="block size-5 animate-bounce sm:hidden" />
+          </div>
+          <p className="mt-1 text-xs font-light">
+            For escalations, please find my
             <Link
               href="https://www.instagram.com/gomugomu.cat"
               target="_blank"
               className="link font-semibold"
+              title="meow"
             >
-              Luffy.
+              {" "}
+              Ted Lead{" "}
             </Link>
+            instead.
           </p>
-          <div className="mt-4 flex items-end gap-1">
-            <p className="font-semibold">Ask the chatbot anything about me</p>
-            <ArrowDownRight className="size-5 animate-bounce" />
-          </div>
           <section className="mt-8 flex items-center gap-8">
             <Link href="/resume.pdf" target="_blank">
               <Button variant="outline">
