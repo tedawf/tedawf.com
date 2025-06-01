@@ -27,14 +27,16 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "mx-auto flex min-h-screen max-w-3xl flex-col px-8 font-sans antialiased",
+          "min-h-screen bg-background font-sans antialiased",
           inter.variable,
           calistoga.variable,
         )}
       >
         <Providers>
           <Header />
-          <main className="grow">{children}</main>
+          <div className="mx-auto flex max-w-3xl flex-col px-8">
+            <main className="grow">{children}</main>
+          </div>
           <Footer />
         </Providers>
       </body>
