@@ -32,7 +32,7 @@ export default function ChatInput({
   isLoading,
   messages,
 }: ChatInputProps) {
-  console.log(messages)
+  console.log(messages);
   return (
     <form onSubmit={handleSubmit} className="flex gap-1 border-t px-2 py-3">
       <Button
