@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# My Personal Portfolio
+
+A clean, minimal portfolio website built with Next.js, Tailwind CSS, and Shadcn UI. Features an AI chatbot, email contact form, and blog.
+
+> Built this for fun and decided to open source it properly after getting lots of requests for permission to copy it!
+
+## Live Demo
+
+🌐 Check it out here: **[https://tedawf.com](https://tedawf.com)**
+
+![Portfolio Screenshot](public/tedawf-com-2.png)
+
+## Features
+
+- Minimal design with Shadcn UI
+- Light/dark mode toggle
+- AI chatbot (Ted Support) trained on my portfolio content - please be nice to him! 😊
+- Contact form with email integration
+- Responsive mobile design
+- Blog section
+
+## Tech Stack
+
+- Next.js
+- Tailwind CSS
+- Shadcn UI
+- OpenAI API (chatbot)
+- Vercel (hosting)
+- AstraDB (vector storage)
+- Upstash (caching)
+- Resend (email)
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+git clone https://github.com/tedawf/tedawf.com ted-portfolio
+cd ted-portfolio
+npm install
+cp .env.example .env.local
+# Add your own API keys to .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```env
+OPENAI_API_KEY=your_key
+ASTRA_DB_APPLICATION_TOKEN=your_token
+ASTRA_DB_ENDPOINT=your_endpoint
+UPSTASH_REDIS_REST_URL=your_url
+UPSTASH_REDIS_REST_TOKEN=your_token
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Customization
 
-## Learn More
+- Update personal info in `src/data/*.json`
+- Replace projects in `src/data/projects.json`
+- Replace blog posts in `content/` or remove it.
+- Add your resume to `public/resume.pdf`
+- Modify chatbot prompt in `src/app/api/chat/route.ts`
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Deploy to Vercel:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. Push to GitHub
+2. Connect repo to Vercel
+3. Add environment variables
+4. Deploy
 
-## Deploy on Vercel
+## Costs
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- OpenAI API: ~$5
+- Domain: ~$20/year
+- Hosting/DB: Free tiers
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## License
+
+MIT
+
+## Featured on YouTube!
+
+📺 **[Live Portfolio Review by Anthony Sistilli](https://www.youtube.com/watch?v=aUJiNyb3cvM&t=40s)** - Got reviewed live on his stream!
+
+🔥 [Started a trend?](https://youtu.be/ib-Nlg9qWBw?si=1atsKJyfYDXtFVnE&t=400) - Apparently this portfolio design inspired others!
+
+---
+
+Feel free to fork and make it your own! Would love to see what you guys build with it ✨
