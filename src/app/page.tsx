@@ -33,25 +33,29 @@ export default async function Home() {
           height={175}
           priority
         />
-        <div className="flex flex-col">
-          <h1 className="title text-5xl">hi ted here. 👋</h1>
-          <p className="mt-2 font-medium">
-            {/* Update my age */}
+        <div className="flex max-w-[320px] flex-col sm:max-w-full">
+          <h1 className="title text-balance text-4xl sm:text-5xl">
+            hi ted here. 👋
+          </h1>
+
+          <p className="mt-2 whitespace-nowrap text-sm font-medium sm:text-base">
             {new Date().getFullYear() - TED_BIRTH_YEAR}
             yo software engineer from Singapore 🇸🇬
           </p>
-          <p className="mt-8 max-w-sm">
+
+          <p className="mt-4 max-w-sm text-balance text-sm sm:text-base">
             Backend by trade, full-stack by passion. I build and self-host the
             lot.
           </p>
 
-          <div className="mt-8 flex items-end gap-1">
-            <p className="font-semibold">
-              For any Q&A, raise a ticket with Ted Support
+          <div className="mt-6 flex items-center gap-1">
+            <p className="text-balance text-sm font-semibold sm:text-base">
+              For Q&A, raise a ticket with Ted Support
             </p>
             <ArrowDownRight className="hidden size-5 animate-bounce sm:block" />
             <ArrowDown className="block size-5 animate-bounce sm:hidden" />
           </div>
+
           <p className="mt-1 text-xs font-light">
             For escalations, please find my
             <Link
@@ -60,12 +64,12 @@ export default async function Home() {
               className="link font-semibold"
               title="meow"
             >
-              {" "}
-              Ted Lead{" "}
+              &nbsp;Ted Lead&nbsp;
             </Link>
             instead.
           </p>
-          <section className="mt-8 flex items-center gap-8">
+
+          <section className="mt-6 flex flex-wrap items-center gap-4">
             <Link href="/resume.pdf" target="_blank">
               <Button variant="outline">
                 <span className="font-semibold">Resume</span>
