@@ -5,13 +5,13 @@ image: "/tt4d.png"
 publishedAt: "2025-04-21"
 ---
 
-Hey there! I'm super excited to share one of my recent side projects: **TT4D**, short for *Toto & 4D*. It’s a fullstack web application that lets you:
+Hey there! I'm super excited to share one of my recent side projects: **TT4D**, short for _Toto & 4D_. It’s a fullstack web application that lets you:
 
-- View historical Toto and 4D results  
-- Analyze trends  
-- Generate your own *lucky numbers*  
+- View historical Toto and 4D results
+- Analyze trends
+- Generate your own _lucky numbers_
 
-This one’s especially close to home — *Toto and 4D are a true Singaporean favourite*. If you've ever waited for the 6:30pm draw results to drop or picked numbers based on car plates and birthdays, you’ll know what I mean. 😉
+This one’s especially close to home — _Toto and 4D are a true Singaporean favourite_. If you've ever waited for the 6:30pm draw results to drop or picked numbers based on car plates and birthdays, you’ll know what I mean. 😉
 
 For now, the app focuses on **Toto** first — I wanted to build a solid **proof of concept** before expanding into 4D. Don’t worry, **4D support is coming soon**. 🚧
 
@@ -44,21 +44,24 @@ This was a fullstack build, powered by:
 
 ## 🧩 Challenges & Highlights
 
-### 🕵️‍♂️ Dealing with Messy Historical Data  
-Everything started with the data. I scraped thousands of results, and here’s the kicker — over the years, the format *kept changing*. Some results had missing sections, and I had to write custom logic to make sure everything got parsed correctly and stored cleanly.
+### 🕵️‍♂️ Dealing with Messy Historical Data
 
-### ⚙️ Deploying Multiple Services  
+Everything started with the data. I scraped thousands of results, and here’s the kicker — over the years, the format _kept changing_. Some results had missing sections, and I had to write custom logic to make sure everything got parsed correctly and stored cleanly.
+
+### ⚙️ Deploying Multiple Services
+
 One of the most frustrating — but also super rewarding — parts of this project was figuring out how to **deploy multiple services** smoothly. I had to coordinate:
 
-- The **frontend** (Next.js on Vercel)  
-- The **backend API** (FastAPI on Fly.io)  
-- The **PostgreSQL database**  
-- A **scheduled Python job** that scrapes and updates results twice a week  
+- The **frontend** (Next.js on Vercel)
+- The **backend API** (FastAPI on Fly.io)
+- The **PostgreSQL database**
+- A **scheduled Python job** that scrapes and updates results twice a week
 
 Each service needed its own setup, networking, and environment configuration — and of course, things broke in weird ways until they didn’t. 😅 But seeing everything sync up and run reliably in production? Chef’s kiss. 👨‍🍳
 
-### ⚡ Making Data Feel Instant  
-Once the backend was ready, I used **Next.js 15** with static rendering to make the experience feel buttery smooth. The app supports **instant search**, **pagination**, and **optimized fetching**, so you can sift through *decades* of data without lag.
+### ⚡ Making Data Feel Instant
+
+Once the backend was ready, I used **Next.js 15** with static rendering to make the experience feel buttery smooth. The app supports **instant search**, **pagination**, and **optimized fetching**, so you can sift through _decades_ of data without lag.
 
 Yes, that's **over 50 years of draw results** served instantly. This is honestly the part I’m most proud of. 🥹
 
@@ -67,7 +70,7 @@ Yes, that's **over 50 years of draw results** served instantly. This is honestly
 ## 🔮 A Little Fun with RNG
 
 I added a **random number generator** for fun — just in case you're feeling lucky. 😏  
-If you *actually* strike Toto using it, do come back and say hi. (Or buy me kopi? 👀)
+If you _actually_ strike Toto using it, do come back and say hi. (Or buy me kopi? 👀)
 
 ---
 
@@ -87,4 +90,3 @@ Also on the roadmap: **4D integration** — stay tuned for that!
 Thanks for reading, and let me know what you think! Whether you’re into data, clean UIs, or just like a good side project story — I hope TT4D gave you a spark of inspiration.
 
 — Ted
-
