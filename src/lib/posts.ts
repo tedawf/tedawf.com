@@ -13,6 +13,11 @@ export type PostMetadata = {
   image?: string;
   publishedAt?: string;
   slug: string;
+  content?: string;
+  updatedAt?: string;
+  author?: string;
+  tags?: string[];
+  readingTime?: string;
 };
 
 export async function getPostBySlug(
@@ -24,8 +29,15 @@ export async function getPostBySlug(
     const fileContents = await fs.readFileSync(filePath, { encoding: "utf-8" });
     const { data, content } = matter(fileContents);
 
-    return { metadata: { ...data, slug }, content };
+    const metadata: PostMetadata = {
+      ...data,
+      slug,
+      content,
+    };
+
+    return { metadata, content };
   } catch (error) {
+    console.error(`Error reading post ${slug}:`, error);
     return null;
   }
 }
@@ -34,32 +46,50 @@ export async function getPosts(
   rootDirectory: string,
   limit?: number,
 ): Promise<PostMetadata[]> {
-  const files = fs.readdirSync(rootDirectory);
+  try {
+    const files = fs.readdirSync(rootDirectory);
 
-  const posts = files
-    .filter((file) => file.endsWith(".mdx")) // might have .DS_Store?
-    .map((file) => getPostMetaData(rootDirectory, file))
-    .sort(
-      (a, b) =>
-        (new Date(b.publishedAt ?? "").getTime() || 0) -
-        (new Date(a.publishedAt ?? "").getTime() || 0),
-    );
+    const posts = files
+      .filter((file) => file.endsWith(".mdx")) // Filter out .DS_Store and other files
+      .map((file) => getPostMetaData(rootDirectory, file))
+      .filter((post): post is PostMetadata => post !== null) // Filter out failed reads
+      .sort((a, b) => {
+        const dateA =
+          new Date(a.updatedAt ?? a.publishedAt ?? "").getTime() || 0;
+        const dateB =
+          new Date(b.updatedAt ?? b.publishedAt ?? "").getTime() || 0;
+        return dateB - dateA; // Most recent first
+      });
 
-  if (limit) {
-    return posts.slice(0, limit);
+    if (limit) {
+      return posts.slice(0, limit);
+    }
+
+    return posts;
+  } catch (error) {
+    console.error("Error reading posts directory:", error);
+    return [];
   }
-
-  return posts;
 }
 
 export function getPostMetaData(
   rootDirectory: string,
   filePath: string,
-): PostMetadata {
-  const slug = filePath.replace(/\.mdx$/, "");
-  const fullFilePath = path.join(rootDirectory, filePath);
-  const fileContent = fs.readFileSync(fullFilePath, { encoding: "utf8" });
-  const { data } = matter(fileContent);
+): PostMetadata | null {
+  try {
+    const slug = filePath.replace(/\.mdx$/, "");
+    const fullFilePath = path.join(rootDirectory, filePath);
+    const fileContent = fs.readFileSync(fullFilePath, { encoding: "utf8" });
+    const { data, content } = matter(fileContent);
 
-  return { ...data, slug };
+    // Include raw content for reading time calculation
+    return {
+      ...data,
+      slug,
+      content, // Add raw content to metadata
+    };
+  } catch (error) {
+    console.error(`Error reading post metadata for ${filePath}:`, error);
+    return null;
+  }
 }

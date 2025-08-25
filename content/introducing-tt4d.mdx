@@ -3,6 +3,7 @@ title: "Introducing TT4D – My Fullstack Lottery Playground"
 summary: "Generate winning combinations, view past results, and analyze lottery trends all in one place."
 image: "/tt4d.png"
 publishedAt: "2025-04-21"
+tags: ["Next.js", "FastAPI", "Web Scraping"]
 ---
 
 Hey there! I'm super excited to share one of my recent side projects: **TT4D**, short for _Toto & 4D_. It’s a fullstack web application that lets you:
@@ -13,21 +14,17 @@ Hey there! I'm super excited to share one of my recent side projects: **TT4D**, 
 
 This one’s especially close to home — _Toto and 4D are a true Singaporean favourite_. If you've ever waited for the 6:30pm draw results to drop or picked numbers based on car plates and birthdays, you’ll know what I mean. 😉
 
-For now, the app focuses on **Toto** first — I wanted to build a solid **proof of concept** before expanding into 4D. Don’t worry, **4D support is coming soon**. 🚧
+For now, the app focuses on **Toto** first - I wanted to build a solid **proof of concept** before expanding into 4D. Don’t worry, **4D support is coming soon**. 🚧
 
 👉 **Live here:** [huatnumbers.com](https://huatnumbers.com)  
 👨‍💻 **Source code:** [Backend](https://github.com/tedawf/tt4d) | [Frontend](https://github.com/tedawf/tt4d-web)
 
----
-
 ## 🧪 Why TT4D?
 
-This is a **proof of concept** to explore how well this idea resonates with others. I wanted to see if combining historical lottery data with a slick, responsive UI could be both useful and fun. This project is part experiment, part playground — and 100% a learning opportunity.
+This is a **proof of concept** to explore how well this idea resonates with others. I wanted to see if combining historical lottery data with a slick, responsive UI could be both useful and fun. This project is part experiment, part playground - and 100% a learning opportunity.
 
-And just to be clear — I’m **not a gambling addict** 😅  
+And just to be clear - I’m **not a gambling addict** 😅  
 This is purely for **fun** and **personal development**. I love building things that make data accessible, fast, and maybe even a bit playful.
-
----
 
 ## 🛠️ The Tech Stack
 
@@ -39,8 +36,6 @@ This was a fullstack build, powered by:
 - **Next.js 15** for the frontend, statically rendered for max speed
 - **TailwindCSS** + **shadcn/ui** for clean, modern styling
 - **BS4 (BeautifulSoup4)** for scraping historical data
-
----
 
 ## 🧩 Challenges & Highlights
 
@@ -57,15 +52,13 @@ One of the most frustrating — but also super rewarding — parts of this proje
 - The **PostgreSQL database**
 - A **scheduled Python job** that scrapes and updates results twice a week
 
-Each service needed its own setup, networking, and environment configuration — and of course, things broke in weird ways until they didn’t. 😅 But seeing everything sync up and run reliably in production? Chef’s kiss. 👨‍🍳
+One of the most frustrating - but also super rewarding - parts of this project was figuring out how to **deploy multiple services** smoothly. I had to coordinate:
 
 ### ⚡ Making Data Feel Instant
 
 Once the backend was ready, I used **Next.js 15** with static rendering to make the experience feel buttery smooth. The app supports **instant search**, **pagination**, and **optimized fetching**, so you can sift through _decades_ of data without lag.
 
 Yes, that's **over 50 years of draw results** served instantly. This is honestly the part I’m most proud of. 🥹
-
----
 
 ## 🔮 A Little Fun with RNG
 
@@ -83,7 +76,7 @@ This is just the start. Some features I’d love to experiment with:
 - 🎰 A smarter, more **robust number generator**
 - 🧠 Maybe even a quirky twist with **blockchain or NFTs** just for fun?
 
-Also on the roadmap: **4D integration** — stay tuned for that!
+Also on the roadmap: **4D integration** - stay tuned for that!
 
 ---
 
