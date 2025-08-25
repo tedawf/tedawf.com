@@ -3,6 +3,7 @@ import LinkWithIcon from "@/components/LinkWithIcon";
 import Posts from "@/components/Posts";
 import Projects from "@/components/Projects";
 import Socials from "@/components/Socials";
+import SwipeCards from "@/components/SwipeCards";
 import { Button } from "@/components/ui/Button";
 import { getPosts } from "@/lib/posts";
 import {
@@ -11,7 +12,6 @@ import {
   ArrowRightIcon,
   FileDown,
 } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import path from "path";
 
@@ -25,14 +25,8 @@ export default async function Home() {
   return (
     <article className="mt-8 flex flex-col gap-16 pb-16">
       <section className="flex flex-col items-start gap-8 md:flex-row-reverse md:items-center md:justify-between">
-        <Image
-          className="rounded-lg"
-          src="/ted.jpg"
-          alt="Photo of Ted"
-          width={175}
-          height={175}
-          priority
-        />
+        <SwipeCards className="md:mr-8" />
+
         <div className="flex max-w-[320px] flex-col sm:max-w-full">
           <h1 className="title text-balance text-4xl sm:text-5xl">
             hi ted here. 👋
