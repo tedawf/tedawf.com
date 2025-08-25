@@ -45,8 +45,8 @@ npm run dev
 
 ```env
 OPENAI_API_KEY=your_key
+ASTRA_DB_API_ENDPOINT=your_endpoint
 ASTRA_DB_APPLICATION_TOKEN=your_token
-ASTRA_DB_ENDPOINT=your_endpoint
 UPSTASH_REDIS_REST_URL=your_url
 UPSTASH_REDIS_REST_TOKEN=your_token
 ```
