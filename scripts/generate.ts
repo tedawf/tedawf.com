@@ -59,31 +59,8 @@ async function generateEmbeddings() {
   const dataSplitter = RecursiveCharacterTextSplitter.fromLanguage("js");
   const splitData = await dataSplitter.splitDocuments(data);
 
-  // blog posts
-  const postLoader = new DirectoryLoader(
-    "content",
-    {
-      ".mdx": (path) => new TextLoader(path),
-    },
-    true,
-  );
-
-  const posts = (await postLoader.load())
-    .filter((post) => post.metadata.source.endsWith(".mdx"))
-    .map((post): DocumentInterface => {
-      const pageContentTrimmed = post.pageContent.split("---")[1]; // only want the frontmatter
-
-      return { pageContent: pageContentTrimmed, metadata: post.metadata };
-    });
-
-  // console.log(posts);
-
-  const postSplitter = RecursiveCharacterTextSplitter.fromLanguage("markdown");
-  const splitPosts = await postSplitter.splitDocuments(posts);
-
   await vectorStore.addDocuments(splitRoutes);
   await vectorStore.addDocuments(splitData);
-  await vectorStore.addDocuments(splitPosts);
 }
 
 generateEmbeddings();
