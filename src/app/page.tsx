@@ -20,7 +20,7 @@ const TED_BIRTH_YEAR = 1997;
 const LIMIT = 2; // max show 2
 
 export default async function Home() {
-  const posts = await getPosts(blogDirectory, LIMIT);
+  const posts = await getPosts(LIMIT);
 
   return (
     <article className="mt-8 flex flex-col gap-16 pb-16">
