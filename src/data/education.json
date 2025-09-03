@@ -4,7 +4,7 @@
       "name": "Digipen Institute of Technology Singapore",
       "href": "https://www.digipen.edu.sg",
       "title": "BS in Computer Science in Real-Time Interactive Simulation",
-      "logo": "/digipen.png",
+      "logo": "/img/digipen.png",
       "start": "Sep 2019",
       "end": "Apr 2023",
       "description": [
@@ -29,7 +29,7 @@
       "name": "Singapore Polytechnic",
       "href": "https://www.sp.edu.sg",
       "title": "Diploma in Games Design and Development",
-      "logo": "/sp.png",
+      "logo": "/img/sp.png",
       "start": "Apr 2014",
       "end": "May 2017"
     }

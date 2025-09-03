@@ -3,7 +3,7 @@ import MDXContent from "@/components/MDXContent";
 import { Badge } from "@/components/ui/Badge";
 import { Separator } from "@/components/ui/Separator";
 import { getPostBySlug, getPosts } from "@/lib/posts";
-import { calculateReadingTime, formatDate } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
 import {
   ArrowLeftIcon,
   CalendarIcon,
@@ -12,12 +12,9 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import path from "path";
-
-const blogDirectory = path.join(process.cwd(), "content");
 
 export async function generateStaticParams() {
-  const posts = await getPosts(blogDirectory);
+  const posts = await getPosts(10);
   const slugs = posts.map((post) => ({ slug: post.slug }));
 
   return slugs;
@@ -29,7 +26,7 @@ export async function generateMetadata({
   params: { slug: string };
 }) {
   const { slug } = params;
-  const post = await getPostBySlug(blogDirectory, slug);
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     return {
@@ -37,31 +34,28 @@ export async function generateMetadata({
     };
   }
 
-  const { metadata } = post;
-
   return {
-    title: metadata.title,
-    description: metadata.summary,
+    title: post.title,
+    description: post.summary,
     openGraph: {
-      title: metadata.title,
-      description: metadata.summary,
-      images: metadata.image ? [{ url: metadata.image }] : [],
+      title: post.title,
+      description: post.summary,
+      images: post.image ? [{ url: post.image }] : [],
     },
   };
 }
 
 export default async function Post({ params }: { params: { slug: string } }) {
   const { slug } = params;
-  const post = await getPostBySlug(blogDirectory, slug);
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     notFound();
   }
 
-  const { metadata, content } = post;
-  const { title, image, publishedAt, updatedAt, tags, summary } = metadata;
+  const { title, image, publishedAt, updatedAt, tags, summary, readingTime } =
+    post;
 
-  const readingTime = calculateReadingTime(content);
   const shouldShowUpdated =
     updatedAt &&
     updatedAt !== publishedAt &&
@@ -164,7 +158,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
 
         {/* Content */}
         <main className="prose prose-lg prose-gray max-w-none dark:prose-invert prose-headings:font-semibold prose-headings:tracking-tight prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-p:leading-relaxed prose-code:text-sm prose-pre:border prose-pre:bg-muted prose-img:rounded-lg prose-img:shadow-md">
-          <MDXContent source={content} />
+          <MDXContent source={post.content} />
         </main>
 
         {/* Footer */}

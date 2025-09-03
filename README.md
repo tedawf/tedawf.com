@@ -8,7 +8,7 @@ A clean, minimal portfolio website built with Next.js, Tailwind CSS, and Shadcn 
 
 🌐 Check it out here: **[https://tedawf.com](https://tedawf.com)**
 
-![Portfolio Screenshot](public/tedawf-com-2.png)
+![Portfolio Screenshot](public/img/tedawf-com-2.png)
 
 ## Features
 

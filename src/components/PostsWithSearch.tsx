@@ -1,6 +1,6 @@
 "use client";
 
-import { PostMetadata } from "@/lib/posts";
+import { PostSummary } from "@/lib/posts";
 import { Delete } from "lucide-react";
 import { useState } from "react";
 import Posts from "./Posts";
@@ -8,14 +8,20 @@ import { Button } from "./ui/Button";
 import { Input } from "./ui/Input";
 
 interface Props {
-  posts: PostMetadata[];
+  posts: PostSummary[];
 }
 
 export default function PostsWithSearch({ posts }: Props) {
   const [query, setQuery] = useState("");
-  const filtered = posts.filter((post) =>
-    post.content?.toLowerCase().includes(query.toLowerCase()),
-  );
+  const filtered = posts.filter((post) => {
+  const haystack = [
+    post.title,
+    post.summary,
+    ...(post.tags || []),
+  ].join(" ").toLowerCase();
+
+  return haystack.includes(query.toLowerCase());
+});
 
   const resetFilter = () => setQuery("");
 

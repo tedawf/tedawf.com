@@ -1,5 +1,5 @@
-import { PostMetadata } from "@/lib/posts";
-import { calculateReadingTime, formatDate } from "@/lib/utils";
+import { PostSummary } from "@/lib/posts";
+import { formatDate } from "@/lib/utils";
 import { Calendar, Clock, Edit3 } from "lucide-react";
 import Link from "next/link";
 import { Badge } from "./ui/Badge";
@@ -8,18 +8,15 @@ import { Card } from "./ui/Card";
 const MAX_TAGS_DISPLAYED = 3;
 
 interface Props {
-  posts: PostMetadata[];
+  posts: PostSummary[];
 }
 
 export default function Posts({ posts }: Props) {
-
   return (
     posts.length > 0 && (
       <Card className="overflow-hidden">
         <ul className="divide-y divide-border">
           {posts.map((post) => {
-            const readingTime = calculateReadingTime(post.content || "");
-
             return (
               <li key={post.slug} className="group">
                 <Link href={`/blog/${post.slug}`} className="block">
@@ -86,7 +83,7 @@ export default function Posts({ posts }: Props) {
                         {/* Reading Time */}
                         <div className="flex items-center gap-1.5">
                           <Clock className="h-3.5 w-3.5" />
-                          <span>{readingTime}</span>
+                          <span>{post.readingTime}</span>
                         </div>
                       </div>
                     </div>
