@@ -5,6 +5,7 @@ import { Separator } from "@/components/ui/Separator";
 import { getPostBySlug, getPosts } from "@/lib/posts";
 import { formatDate } from "@/lib/utils";
 import {
+  AlertTriangleIcon,
   ArrowLeftIcon,
   CalendarIcon,
   ClockIcon,
@@ -53,8 +54,16 @@ export default async function Post({ params }: { params: { slug: string } }) {
     notFound();
   }
 
-  const { title, image, publishedAt, updatedAt, tags, summary, readingTime } =
-    post;
+  const {
+    title,
+    image,
+    publishedAt,
+    updatedAt,
+    tags,
+    summary,
+    readingTime,
+    draft,
+  } = post;
 
   const shouldShowUpdated =
     updatedAt &&
@@ -76,6 +85,19 @@ export default async function Post({ params }: { params: { slug: string } }) {
       </nav>
 
       <article className="mx-auto max-w-4xl">
+        {/* Draft Warning Banner */}
+        {draft && (
+          <div className="mb-8 rounded-lg border border-orange-200 bg-orange-50 p-4 dark:border-orange-800 dark:bg-orange-950">
+            <div className="flex items-center gap-2">
+              <AlertTriangleIcon className="h-4 w-4 text-orange-600 dark:text-orange-400" />
+              <p className="text-sm font-medium text-orange-800 dark:text-orange-200">
+                This is a draft post and may contain incomplete or unpolished
+                content.
+              </p>
+            </div>
+          </div>
+        )}
+
         {/* Featured Image */}
         {image && (
           <div className="relative mb-8 h-64 w-full overflow-hidden rounded-xl sm:h-80 lg:h-96">
@@ -166,13 +188,22 @@ export default async function Post({ params }: { params: { slug: string } }) {
           <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
             {/* Date info */}
             <div className="text-sm text-muted-foreground">
+              {/* Draft status indicator */}
+              {draft && (
+                <p className="mb-2 flex items-center gap-1.5 text-orange-600 dark:text-orange-400">
+                  <Edit3Icon className="h-3 w-3" />
+                  Draft • Not published
+                </p>
+              )}
+
+              {/* Publication dates */}
               {shouldShowUpdated && updatedAt ? (
                 <p>
-                  Published {formatDate(publishedAt ?? "")} • Updated{" "}
+                  Created {formatDate(publishedAt ?? "")} • Updated{" "}
                   {formatDate(updatedAt)}
                 </p>
               ) : (
-                <p>Published {formatDate(publishedAt ?? "")}</p>
+                <p>Created {formatDate(publishedAt ?? "")}</p>
               )}
             </div>
 

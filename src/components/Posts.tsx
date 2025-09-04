@@ -24,9 +24,18 @@ export default function Posts({ posts }: Props) {
                     <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                       {/* Content Section */}
                       <div className="min-w-0 flex-1">
-                        <h3 className="mb-2 line-clamp-2 text-lg font-semibold leading-tight transition-colors group-hover:text-primary">
-                          {post.title}
-                        </h3>
+                        <div className="mb-2 flex items-center gap-2">
+                          <h3 className="line-clamp-2 text-lg font-semibold leading-tight transition-colors group-hover:text-primary">
+                            {post.title}
+                          </h3>
+
+                          {/* Draft badge */}
+                          {post.draft && (
+                            <Badge className="bg-orange-500 text-white text-xs">
+                              Draft
+                            </Badge>
+                          )}
+                        </div>
 
                         {post.summary && (
                           <p className="mb-3 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
@@ -83,7 +92,7 @@ export default function Posts({ posts }: Props) {
                         {/* Reading Time */}
                         <div className="flex items-center gap-1.5">
                           <Clock className="h-3.5 w-3.5" />
-                          <span>{post.readingTime}</span>
+                          <span>{post.readingTime} read</span>
                         </div>
                       </div>
                     </div>
