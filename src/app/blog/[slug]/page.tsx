@@ -192,18 +192,18 @@ export default async function Post({ params }: { params: { slug: string } }) {
               {draft && (
                 <p className="mb-2 flex items-center gap-1.5 text-orange-600 dark:text-orange-400">
                   <Edit3Icon className="h-3 w-3" />
-                  Draft • Not published
+                  Draft
                 </p>
               )}
 
               {/* Publication dates */}
               {shouldShowUpdated && updatedAt ? (
                 <p>
-                  Created {formatDate(publishedAt ?? "")} • Updated{" "}
+                  Published {formatDate(publishedAt ?? "")} • Updated{" "}
                   {formatDate(updatedAt)}
                 </p>
               ) : (
-                <p>Created {formatDate(publishedAt ?? "")}</p>
+                <p>Published {formatDate(publishedAt ?? "")}</p>
               )}
             </div>
 
