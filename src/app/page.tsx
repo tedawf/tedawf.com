@@ -44,7 +44,7 @@ export default async function Home() {
 
           <div className="mt-6 flex items-center gap-1">
             <p className="text-balance text-sm font-semibold sm:text-base">
-              For Q&A, raise a ticket with Ted Support
+              For Q&A, start a chat with Ted Support
             </p>
             <ArrowDownRight className="hidden size-5 animate-bounce sm:block" />
             <ArrowDown className="block size-5 animate-bounce sm:hidden" />
