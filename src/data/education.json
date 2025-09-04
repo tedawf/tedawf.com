@@ -31,7 +31,14 @@
       "title": "Diploma in Games Design and Development",
       "logo": "/img/sp.png",
       "start": "Apr 2014",
-      "end": "May 2017"
+      "end": "May 2017",
+      "links": [
+        {
+          "name": "Final Year Project",
+          "href": "https://tedawf.github.io/portfolio-2019/phase.html",
+          "icon": "globe"
+        }
+      ]
     }
   ]
 }
