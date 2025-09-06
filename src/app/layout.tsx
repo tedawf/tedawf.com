@@ -20,6 +20,14 @@ const calistoga = Calistoga({
 export const metadata: Metadata = {
   title: "Ted Thoughts.",
   description: "My personal site to showcase my developer work and opinions.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/apple-icon.png",
+  },
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
