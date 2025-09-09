@@ -37,9 +37,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png"></link>
-      </head>
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
