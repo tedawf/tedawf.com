@@ -13,14 +13,14 @@ import {
   FileDown,
 } from "lucide-react";
 import Link from "next/link";
-import path from "path";
 
-const blogDirectory = path.join(process.cwd(), "content");
 const TED_BIRTH_YEAR = 1997;
 const LIMIT = 2; // max show 2
 
 export default async function Home() {
-  const posts = await getPosts(LIMIT);
+  const posts = (await getPosts())
+    .filter((post) => !post.draft)
+    .slice(0, LIMIT);
 
   return (
     <article className="mt-8 flex flex-col gap-16 pb-16">

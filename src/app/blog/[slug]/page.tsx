@@ -1,3 +1,4 @@
+import BlogImage from "@/components/BlogImage";
 import LinkWithIcon from "@/components/LinkWithIcon";
 import MDXContent from "@/components/MDXContent";
 import { Badge } from "@/components/ui/Badge";
@@ -11,7 +12,6 @@ import {
   ClockIcon,
   Edit3Icon,
 } from "lucide-react";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
@@ -72,9 +72,9 @@ export default async function Post({ params }: { params: { slug: string } }) {
       new Date(publishedAt || updatedAt).getTime();
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       {/* Navigation */}
-      <nav className="mb-8">
+      <nav className="mb-12">
         <LinkWithIcon
           href="/blog"
           position="left"
@@ -84,8 +84,8 @@ export default async function Post({ params }: { params: { slug: string } }) {
         />
       </nav>
 
-      <article className="mx-auto max-w-4xl">
-        {/* Draft Warning Banner */}
+      <article className="mx-auto max-w-4xl px-4">
+        {/* Draft Banner */}
         {draft && (
           <div className="mb-8 rounded-lg border border-orange-200 bg-orange-50 p-4 dark:border-orange-800 dark:bg-orange-950">
             <div className="flex items-center gap-2">
@@ -99,33 +99,23 @@ export default async function Post({ params }: { params: { slug: string } }) {
         )}
 
         {/* Featured Image */}
-        {image && (
-          <div className="relative mb-8 h-64 w-full overflow-hidden rounded-xl sm:h-80 lg:h-96">
-            <Image
-              src={image}
-              alt={title || ""}
-              className="object-cover transition-transform duration-300 hover:scale-105"
-              fill
-              priority
-            />
-          </div>
-        )}
+        {image && <BlogImage src={image} alt={title || ""} />}
 
         {/* Header */}
-        <header className="mb-8">
-          <div className="space-y-4">
-            <h1 className="text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+        <header className="mb-16">
+          <div className="space-y-6">
+            <h1 className="bg-gradient-to-br from-foreground to-foreground/80 bg-clip-text text-4xl font-bold leading-tight tracking-tight text-transparent sm:text-5xl lg:text-6xl">
               {title}
             </h1>
 
             {summary && (
-              <p className="max-w-3xl text-lg leading-relaxed text-muted-foreground">
+              <p className="max-w-3xl text-xl leading-relaxed text-muted-foreground/90">
                 {summary}
               </p>
             )}
 
-            {/* Meta section */}
-            <div className="flex flex-col gap-3">
+            {/* Metadata section */}
+            <div className="flex flex-col gap-4 pt-2">
               {/* Reading time, Published, Updated */}
               <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
                 {/* Reading time */}
@@ -179,31 +169,33 @@ export default async function Post({ params }: { params: { slug: string } }) {
         </header>
 
         {/* Content */}
-        <main className="prose prose-lg prose-gray max-w-none dark:prose-invert prose-headings:font-semibold prose-headings:tracking-tight prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-p:leading-relaxed prose-code:text-sm prose-pre:border prose-pre:bg-muted prose-img:rounded-lg prose-img:shadow-md">
+        <main className="prose prose-lg prose-gray max-w-none dark:prose-invert prose-headings:scroll-mt-24 prose-headings:font-bold prose-headings:tracking-tight prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-2xl prose-h4:text-xl prose-p:leading-relaxed prose-p:text-foreground/90 prose-a:font-semibold prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-blockquote:rounded-r-lg prose-blockquote:border-l-primary prose-blockquote:bg-muted/30 prose-blockquote:px-6 prose-blockquote:py-1 prose-code:rounded-md prose-code:bg-muted prose-code:px-2 prose-code:py-1 prose-code:text-sm prose-code:font-semibold prose-code:before:content-none prose-code:after:content-none prose-pre:rounded-xl prose-pre:border prose-pre:bg-muted prose-pre:shadow-lg prose-table:overflow-hidden prose-table:rounded-lg prose-table:border prose-table:border-border prose-tr:border-border prose-th:bg-muted prose-th:font-semibold prose-td:border-border prose-img:rounded-2xl prose-img:shadow-xl prose-img:ring-1 prose-img:ring-border prose-hr:my-12 prose-hr:border-border">
           <MDXContent source={post.content} />
         </main>
 
         {/* Footer */}
-        <footer className="mt-16 border-t pt-8">
-          <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+        <footer className="mt-24 rounded-2xl border bg-muted/30 p-8">
+          <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-center">
             {/* Date info */}
-            <div className="text-sm text-muted-foreground">
+            <div className="space-y-2 text-sm text-muted-foreground">
               {/* Draft status indicator */}
               {draft && (
-                <p className="mb-2 flex items-center gap-1.5 text-orange-600 dark:text-orange-400">
-                  <Edit3Icon className="h-3 w-3" />
-                  Draft
+                <p className="flex items-center gap-2 text-orange-600 dark:text-orange-400">
+                  <Edit3Icon className="h-3.5 w-3.5" />
+                  <span className="font-semibold">Draft</span>
                 </p>
               )}
 
               {/* Publication dates */}
               {shouldShowUpdated && updatedAt ? (
-                <p>
+                <p className="font-medium">
                   Published {formatDate(publishedAt ?? "")} • Updated{" "}
                   {formatDate(updatedAt)}
                 </p>
               ) : (
-                <p>Published {formatDate(publishedAt ?? "")}</p>
+                <p className="font-medium">
+                  Published {formatDate(publishedAt ?? "")}
+                </p>
               )}
             </div>
 
@@ -213,7 +205,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
               position="right"
               icon={<ArrowLeftIcon className="size-4 rotate-180" />}
               text="More posts"
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              className="text-muted-foreground transition-colors hover:text-foreground"
             />
           </div>
         </footer>

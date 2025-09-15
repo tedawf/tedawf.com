@@ -7,7 +7,6 @@ import Posts from "./Posts";
 import { Button } from "./ui/Button";
 import { Input } from "./ui/Input";
 import { Label } from "./ui/label";
-import { Switch } from "./ui/switch";
 import {
   Select,
   SelectContent,
@@ -15,6 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
+import { Switch } from "./ui/switch";
 
 interface Props {
   posts: PostSummary[];
@@ -24,7 +24,7 @@ type SortOption = "newest" | "oldest" | "title";
 
 export default function PostsWithSearch({ posts }: Props) {
   const [query, setQuery] = useState("");
-  const [showDrafts, setShowDrafts] = useState(true);
+  const [showDrafts, setShowDrafts] = useState(false);
   const [sortBy, setSortBy] = useState<SortOption>("newest");
 
   const filtered = posts
@@ -86,7 +86,8 @@ export default function PostsWithSearch({ posts }: Props) {
         </div>
 
         {/* Controls row */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          {/* Draft toggle */}
           <div className="flex items-center space-x-2">
             <Switch
               id="show-drafts"
@@ -104,6 +105,7 @@ export default function PostsWithSearch({ posts }: Props) {
             </Label>
           </div>
 
+          {/* Sort control */}
           <div className="flex items-center space-x-2">
             <ArrowUpDown className="h-4 w-4 text-muted-foreground" />
             <Label className="text-sm text-muted-foreground">Sort:</Label>
