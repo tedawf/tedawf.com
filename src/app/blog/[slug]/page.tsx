@@ -87,13 +87,17 @@ export default async function Post({ params }: { params: { slug: string } }) {
       <article className="mx-auto max-w-4xl px-4">
         {/* Draft Banner */}
         {draft && (
-          <div className="mb-8 rounded-lg border border-orange-200 bg-orange-50 p-4 dark:border-orange-800 dark:bg-orange-950">
-            <div className="flex items-center gap-2">
-              <AlertTriangleIcon className="h-4 w-4 text-orange-600 dark:text-orange-400" />
-              <p className="text-sm font-medium text-orange-800 dark:text-orange-200">
-                This is a draft post and may contain incomplete or unpolished
-                content.
-              </p>
+          <div className="mb-12">
+            <div className="overflow-hidden rounded-lg border border-orange-200 bg-orange-50 shadow-sm dark:border-orange-800 dark:bg-orange-950">
+              <div className="p-6">
+                <div className="flex items-center gap-4">
+                  <AlertTriangleIcon className="h-4 w-4 text-orange-600 dark:text-orange-400" />
+                  <p className="text-sm leading-relaxed text-orange-700 dark:text-orange-300">
+                    This content is in progress and may contain incomplete or
+                    unpolished sections.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         )}
@@ -174,39 +178,58 @@ export default async function Post({ params }: { params: { slug: string } }) {
         </main>
 
         {/* Footer */}
-        <footer className="mt-24 rounded-2xl border bg-muted/30 p-8">
-          <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-center">
-            {/* Date info */}
-            <div className="space-y-2 text-sm text-muted-foreground">
-              {/* Draft status indicator */}
-              {draft && (
-                <p className="flex items-center gap-2 text-orange-600 dark:text-orange-400">
-                  <Edit3Icon className="h-3.5 w-3.5" />
-                  <span className="font-semibold">Draft</span>
-                </p>
-              )}
+        <footer className="mt-24">
+          <div className="overflow-hidden rounded-lg border bg-card shadow-sm">
+            <div className="p-6">
+              <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-center">
+                {/* Date info */}
+                <div className="space-y-2 text-sm text-muted-foreground">
+                  {/* Draft status indicator */}
+                  {draft && (
+                    <p className="flex items-center gap-2 text-orange-600 dark:text-orange-400">
+                      <Edit3Icon className="h-3.5 w-3.5" />
+                      <span className="font-semibold">Draft</span>
+                    </p>
+                  )}
 
-              {/* Publication dates */}
-              {shouldShowUpdated && updatedAt ? (
-                <p className="font-medium">
-                  Published {formatDate(publishedAt ?? "")} • Updated{" "}
-                  {formatDate(updatedAt)}
-                </p>
-              ) : (
-                <p className="font-medium">
-                  Published {formatDate(publishedAt ?? "")}
-                </p>
-              )}
+                  {/* Publication dates */}
+                  <div className="flex flex-col gap-1">
+                    {shouldShowUpdated && updatedAt ? (
+                      <>
+                        <div className="flex items-center gap-1.5">
+                          <CalendarIcon className="h-3.5 w-3.5" />
+                          <span className="font-medium">
+                            Published {formatDate(publishedAt ?? "")}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <Edit3Icon className="h-3.5 w-3.5" />
+                          <span className="font-medium">
+                            Updated {formatDate(updatedAt)}
+                          </span>
+                        </div>
+                      </>
+                    ) : (
+                      <div className="flex items-center gap-1.5">
+                        <CalendarIcon className="h-3.5 w-3.5" />
+                        <span className="font-medium">
+                          Published {formatDate(publishedAt ?? "")}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Back to blog link */}
+                <LinkWithIcon
+                  href="/blog"
+                  position="right"
+                  icon={<ArrowLeftIcon className="size-4 rotate-180" />}
+                  text="More posts"
+                  className="text-muted-foreground transition-colors hover:text-primary"
+                />
+              </div>
             </div>
-
-            {/* Back to blog link */}
-            <LinkWithIcon
-              href="/blog"
-              position="right"
-              icon={<ArrowLeftIcon className="size-4 rotate-180" />}
-              text="More posts"
-              className="text-muted-foreground transition-colors hover:text-foreground"
-            />
           </div>
         </footer>
       </article>
