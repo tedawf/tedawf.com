@@ -169,7 +169,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
         </header>
 
         {/* Content */}
-        <main className="prose prose-lg prose-gray max-w-none dark:prose-invert prose-headings:scroll-mt-24 prose-headings:font-bold prose-headings:tracking-tight prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-2xl prose-h4:text-xl prose-p:leading-relaxed prose-p:text-foreground/90 prose-a:font-semibold prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-blockquote:rounded-r-lg prose-blockquote:border-l-primary prose-blockquote:bg-muted/30 prose-blockquote:px-6 prose-blockquote:py-1 prose-code:rounded-md prose-code:bg-muted prose-code:px-2 prose-code:py-1 prose-code:text-sm prose-code:font-semibold prose-code:before:content-none prose-code:after:content-none prose-pre:rounded-xl prose-pre:border prose-pre:bg-muted prose-pre:shadow-lg prose-table:overflow-hidden prose-table:rounded-lg prose-table:border prose-table:border-border prose-tr:border-border prose-th:bg-muted prose-th:font-semibold prose-td:border-border prose-img:rounded-2xl prose-img:shadow-xl prose-img:ring-1 prose-img:ring-border prose-hr:my-12 prose-hr:border-border">
+        <main className="prose prose-lg max-w-none dark:prose-invert">
           <MDXContent source={post.content} />
         </main>
 

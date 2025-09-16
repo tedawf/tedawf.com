@@ -103,3 +103,43 @@
     @apply ml-1 mt-2 text-sm text-rose-400;
   }
 }
+
+@layer components {
+  /* Minimal prose customizations - let typography plugin handle most styling */
+  .prose {
+    /* Use your design system colors */
+    --tw-prose-links: hsl(var(--primary));
+    --tw-prose-headings: hsl(var(--foreground));
+    --tw-prose-body: hsl(var(--foreground) / 0.9);
+    --tw-prose-bold: hsl(var(--foreground));
+    --tw-prose-code: hsl(var(--foreground));
+    --tw-prose-pre-code: hsl(var(--muted-foreground));
+    --tw-prose-pre-bg: hsl(var(--muted));
+    --tw-prose-th-borders: hsl(var(--border));
+    --tw-prose-td-borders: hsl(var(--border));
+    --tw-prose-quotes: hsl(var(--muted-foreground));
+    --tw-prose-quote-borders: hsl(var(--primary));
+    --tw-prose-hr: hsl(var(--border));
+  }
+
+  /* Small visual enhancements */
+  .prose blockquote {
+    @apply rounded-r-lg border-l-4;
+  }
+
+  .prose pre {
+    @apply rounded-xl border shadow-lg;
+  }
+
+  .prose code {
+    @apply rounded-md;
+  }
+
+  .prose img {
+    @apply rounded-xl shadow-lg;
+  }
+
+  .prose table {
+    @apply border-separate border-spacing-0 overflow-hidden rounded-lg border;
+  }
+}
