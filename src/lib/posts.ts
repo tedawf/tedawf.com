@@ -15,15 +15,29 @@ export type PostDetail = PostSummary & {
   content: string;
 };
 
-const BLOG_API_URL = process.env.BLOG_API_URL || "http://localhost:8000";
+const TACOS_API_URL = process.env.TACOS_API_URL || "http://localhost:8000";
+const TACOS_API_KEY = process.env.TACOS_API_KEY || "";
+
+const fetchWithApiKey = async (url: string) => {
+  const res = await fetch(url, {
+    cache: "no-store",
+    headers: {
+      "X-TACOS-Key": TACOS_API_KEY,
+    },
+  });
+
+  if (!res.ok) {
+    throw new Error(`Failed to fetch ${url}: ${res.status}`);
+  }
+  return res.json();
+};
 
 export async function getPosts(limit?: number): Promise<PostSummary[]> {
   try {
-    const res = await fetch(`${BLOG_API_URL}/posts`, { cache: "no-store" });
-    if (!res.ok) throw new Error(`Failed to fetch posts: ${res.status}`);
-    const posts: PostSummary[] = await res.json();
-
-    // Posts are already sorted by publishedAt desc from the API
+    const posts: PostSummary[] = await fetchWithApiKey(
+      `${TACOS_API_URL}/posts`,
+    );
+    // Posts already sorted by publishedAt desc from the API
     return limit ? posts.slice(0, limit) : posts;
   } catch (err) {
     console.error("Error fetching posts:", err);
@@ -33,10 +47,9 @@ export async function getPosts(limit?: number): Promise<PostSummary[]> {
 
 export async function getPostBySlug(slug: string): Promise<PostDetail | null> {
   try {
-    const res = await fetch(`${BLOG_API_URL}/posts/${slug}`, { cache: "no-store" });
-    if (!res.ok) throw new Error(`Failed to fetch post ${slug}`);
-    const post: PostDetail = await res.json();
-
+    const post: PostDetail = await fetchWithApiKey(
+      `${TACOS_API_URL}/posts/${slug}`,
+    );
     return post;
   } catch (err) {
     console.error(`Error fetching post ${slug}:`, err);
