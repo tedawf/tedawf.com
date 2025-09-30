@@ -1,4 +1,4 @@
-import { type Message } from "ai";
+import { createStreamDataTransformer, type Message } from "ai";
 
 export const runtime = "edge";
 
@@ -31,32 +31,18 @@ export async function POST(req: Request) {
       throw new Error("The response from the backend is empty.");
     }
 
+    // note to self:
+    // when self-hosting behind nginx, make sure to disable buffering -> proxy_buffering off;
+    // otherwise nginx will swallow streaming chunks and only flush at the end.
+
     // 1. Get the raw byte stream
     const rawStream = response.body;
 
-    // 2. Create a TransformStream to convert the raw stream into the Vercel AI SDK format.
-    const vercelAiStream = new TransformStream({
-      async transform(chunk, controller) {
-        // The chunk is a Uint8Array of raw text from your backend.
-        // We decode it to a string.
-        const text = new TextDecoder().decode(chunk);
+    // 2. Pipe the raw stream through the Vercel AI SDK's data transformer.
+    // This handles converting the raw text chunks into the SDK's data format.
+    const stream = rawStream.pipeThrough(createStreamDataTransformer());
 
-        // This is the crucial step:
-        // We manually wrap the text in the AI SDK's required format.
-        // The '0:' prefix is the "separator" the error message is looking for.
-        // The JSON.stringify ensures characters like quotes are escaped correctly.
-        const formattedChunk = `0:${JSON.stringify(text)}\n`;
-
-        // We re-encode the formatted string back to bytes and send it downstream.
-        controller.enqueue(new TextEncoder().encode(formattedChunk));
-      },
-    });
-
-    // 3. Pipe the raw stream through our new transform stream.
-    // The output of this pipe is a new ReadableStream in the correct format.
-    const stream = rawStream.pipeThrough(vercelAiStream);
-
-    // 4. Return a standard 'Response' object with the correctly formatted stream.
+    // 3. Return a standard 'Response' object with the transformed stream.
     return new Response(stream, {
       headers: {
         "Content-Type": "text/plain; charset=utf-8",
