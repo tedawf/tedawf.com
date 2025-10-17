@@ -4,18 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev -H 0.0.0.0",
-    "build": "npm run gen && next build",
-    "gen": "npx ts-node ./scripts/generate.ts",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write ."
   },
   "dependencies": {
-    "@datastax/astra-db-ts": "^1.4.1",
     "@hookform/resolvers": "^3.9.0",
-    "@langchain/community": "^0.3.1",
-    "@langchain/core": "^0.3.2",
-    "@langchain/openai": "^0.3.0",
     "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-alert-dialog": "^1.1.14",
     "@radix-ui/react-avatar": "^1.1.0",
@@ -26,7 +21,6 @@
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-switch": "^1.2.6",
     "@radix-ui/react-tabs": "^1.1.0",
-    "@upstash/redis": "^1.34.0",
     "ai": "^3.3.35",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
@@ -38,7 +32,6 @@
     "next": "^14.2.12",
     "next-mdx-remote": "^5.0.0",
     "next-themes": "^0.4.6",
-    "openai": "^4.61.1",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.53.0",
@@ -63,8 +56,5 @@
     "tailwindcss": "^3.4.1",
     "ts-node": "^10.9.2",
     "typescript": "^5"
-  },
-  "resolutions": {
-    "@langchain/core": "0.3.1"
   }
 }

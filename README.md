@@ -58,15 +58,7 @@ npm run dev
 
 ## Environment Variables
 
-```env
-RESEND_API_KEY=your_key
-OPENAI_API_KEY=your_key
-ASTRA_DB_API_ENDPOINT=your_endpoint
-ASTRA_DB_APPLICATION_TOKEN=your_token
-ASTRA_DB_COLLECTION="embeddings"
-UPSTASH_REDIS_REST_URL=your_url
-UPSTASH_REDIS_REST_TOKEN=your_token
-```
+See .env.example
 
 ## Customization
 
