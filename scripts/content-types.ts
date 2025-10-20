@@ -7,7 +7,14 @@ export interface ContentChunk {
   title: string;
   content: string;
   metadata?: {
-    enrichment?: string;
+    contentType?:
+      | "project"
+      | "career"
+      | "education"
+      | "page"
+      | "social"
+      | "navigation";
+    enrichment?: string[];
   };
 }
 

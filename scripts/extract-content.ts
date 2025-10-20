@@ -31,8 +31,14 @@ function extractHomepageContent(): ContentChunk[] {
       title: "Homepage - Hero welcome section",
       content: homepageContent,
       metadata: {
-        enrichment:
-          "Ted Lead is a joke reference to my cat's Instagram account for escalations",
+        contentType: "page",
+        enrichment: [
+          "This is my portfolio homepage with introduction and welcome message",
+          "I'm a backend developer with full-stack experience",
+          "You can chat with Ted Support for questions and answers",
+          "For escalations, contact Ted Lead on Instagram (this is a joke reference to my cat)",
+          "This site showcases my projects, career, and education",
+        ],
       },
     },
   ];
@@ -67,6 +73,16 @@ function extractPrivacyPageContent(): ContentChunk[] {
     slug: "/privacy",
     title: section.title,
     content: section.content,
+    metadata: {
+      contentType: "page",
+      enrichment: [
+        "This page contains the privacy policy for my portfolio website",
+        "I explain how user data is handled and protected on this site",
+        "The privacy policy covers data protection and user rights",
+        "This document outlines the terms and conditions for using my website",
+        "I describe my approach to data privacy and security",
+      ],
+    },
   }));
 }
 
@@ -80,6 +96,16 @@ function extractBlogPageContent(): ContentChunk[] {
       title: "Blog Information",
       content:
         "Blog posts are handled separately by the backend RAG system. Posts cover technical topics, project updates, and personal insights. Chatbot can direct visitors to specific blog post URLs. All blog content is available for embedding via TACOS backend system.",
+      metadata: {
+        contentType: "page",
+        enrichment: [
+          "This is my blog page with technical articles and project updates",
+          "I write blog posts about technical topics and personal insights",
+          "My blog content is integrated with the TACOS backend system",
+          "You can find my technical writing and tutorials here",
+          "The blog showcases my project updates and development experiences",
+        ],
+      },
     },
   ];
 }
@@ -106,6 +132,18 @@ function extractProjectsData(): ContentChunk[] {
       slug: `projects:${toKebabCase(project.name)}`,
       title: `Project: ${project.name}`,
       content: projectText + linksText,
+      metadata: {
+        contentType: "project",
+        enrichment: [
+          `I built ${project.name} using ${project.tags.join(", ")}`,
+          `This project uses technologies like ${project.tags.join(", ")}`,
+          `${project.name} is a ${project.name.includes("(Final Year)") || project.name.includes("(2nd Year)") ? "school" : "personal"} project`,
+          `I developed ${project.name} as a ${project.tags.length > 5 ? "complex" : "moderate"} project`,
+          `The ${project.name} project focuses on ${project.tags.includes("Web3") || project.tags.includes("NFT") ? "blockchain technology" : project.tags.includes("Game") ? "game development" : "web development"}`,
+          `My technical skills include ${project.tags.join(", ")} from building ${project.name}`,
+          `I created ${project.name} which demonstrates my ${project.tags.join(", ")} expertise`,
+        ],
+      },
     });
   });
 
@@ -134,6 +172,18 @@ function extractCareerData(): ContentChunk[] {
       slug: `career:${toKebabCase(job.name)}-${toKebabCase(job.title)}`,
       title: `Career: ${job.name} - ${job.title}`,
       content: jobText + linksText,
+      metadata: {
+        contentType: "career",
+        enrichment: [
+          `I worked at ${job.name} as a ${job.title}`,
+          `My role at ${job.name} was ${job.title}`,
+          `I was employed at ${job.name} from ${job.start}${job.end ? ` to ${job.end}` : " to present"}`,
+          `During my time at ${job.name}, I worked as a ${job.title}`,
+          `My employment history includes working at ${job.name}`,
+          `I gained experience at ${job.name} in the ${job.name.includes("Bank") ? "finance" : job.name.includes("Institute") ? "education" : "technology"} industry`,
+          `This was a ${job.title.includes("Intern") ? "internship position" : job.title.includes("Graduate") ? "entry-level graduate role" : "professional position"}`,
+        ],
+      },
     });
   });
 
@@ -162,6 +212,18 @@ function extractEducationData(): ContentChunk[] {
       slug: `education:${toKebabCase(edu.name)}`,
       title: `Education: ${edu.name}`,
       content: eduText + linksText,
+      metadata: {
+        contentType: "education",
+        enrichment: [
+          `I studied at ${edu.name} and earned a ${edu.title}`,
+          `My education includes ${edu.title} from ${edu.name}`,
+          `I attended ${edu.name} from ${edu.start} to ${edu.end}`,
+          `I completed my ${edu.title.includes("BS") ? "bachelor's degree" : "diploma"} at ${edu.name}`,
+          `My field of study was ${edu.title.includes("Computer Science") ? "computer science" : "game development"}`,
+          `I graduated from ${edu.name} with a degree in ${edu.title}`,
+          `My academic background includes ${edu.title} from ${edu.name}`,
+        ],
+      },
     });
   });
 
@@ -199,6 +261,18 @@ function extractSocialsData(): ContentChunk[] {
       slug: "socials:links",
       title: "Social Media Links",
       content: socialsContent,
+      metadata: {
+        contentType: "social",
+        enrichment: [
+          "You can connect with me professionally on LinkedIn",
+          "My GitHub contains all my code repositories and projects",
+          "You can email me directly for communication",
+          "These are my social media profiles and contact links",
+          "I'm available on LinkedIn for professional networking",
+          "My GitHub showcases my programming projects and skills",
+          "Email is my preferred method for direct communication",
+        ],
+      },
     },
   ];
 }
@@ -227,6 +301,17 @@ function extractNavigationContent(): ContentChunk[] {
       slug: "navigation:routes",
       title: "Site Navigation",
       content: `Available Routes: ${navigationContent} | External Links: ${externalLinksContent}`,
+      metadata: {
+        contentType: "navigation",
+        enrichment: [
+          "This website has navigation to different sections like projects, blog, and contact",
+          "You can navigate to my projects page to see my work",
+          "The blog section contains my technical articles and updates",
+          "There's a contact page for getting in touch with me",
+          "The site structure includes homepage, projects, blog, and contact sections",
+          "You can find my resume and privacy policy through the navigation",
+        ],
+      },
     },
   ];
 }
@@ -280,12 +365,14 @@ function main() {
     console.log(
       `Total content chunks extracted: ${extractedContent.content.length}`,
     );
-    
+
     // Output extracted content summary for build logs
     console.log("\n--- Extracted Content Summary ---");
     extractedContent.content.forEach((chunk, index) => {
       console.log(`[${index + 1}] ${chunk.slug}: ${chunk.title}`);
-      console.log(`     Content preview: ${chunk.content.substring(0, 100)}...`);
+      console.log(
+        `     Content preview: ${chunk.content.substring(0, 100)}...`,
+      );
     });
     console.log("--- End of Content Summary ---\n");
   } catch (error) {
