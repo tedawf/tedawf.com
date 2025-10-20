@@ -18,13 +18,6 @@ interface ExtractedContent {
 }
 
 /**
- * Helper function to create enrichment context easily
- */
-function createEnrichment(context: string): { enrichment: string } {
-  return { enrichment: context };
-}
-
-/**
  * Extract homepage content from structured JSON
  */
 function extractHomepageContent(): ContentChunk[] {
@@ -37,11 +30,12 @@ function extractHomepageContent(): ContentChunk[] {
   return [
     {
       slug: "/",
-      title: "Homepage - Complete Introduction",
+      title: "Homepage - Hero welcome section",
       content: homepageContent,
-      metadata: createEnrichment(
-        "Ted Lead is a joke reference to my cat's Instagram account for escalations",
-      ),
+      metadata: {
+        enrichment:
+          "Ted Lead is a joke reference to my cat's Instagram account for escalations",
+      },
     },
   ];
 }
@@ -66,7 +60,7 @@ function extractPrivacyPageContent(): ContentChunk[] {
   // Create semantic sections instead of arbitrary paragraphs
   const sections = [
     {
-      title: "Privacy Policy Overview",
+      title: "Portfolio site privacy policy",
       content: cleanContent,
     },
   ];
@@ -87,7 +81,7 @@ function extractBlogPageContent(): ContentChunk[] {
       slug: "/blog",
       title: "Blog Information",
       content:
-        "Blog posts are handled separately by the backend RAG system. Posts cover technical topics, project updates, and personal insights. Chatbot can direct visitors to specific blog post URLs. All blog content is available for embedding via separate system.",
+        "Blog posts are handled separately by the backend RAG system. Posts cover technical topics, project updates, and personal insights. Chatbot can direct visitors to specific blog post URLs. All blog content is available for embedding via TACOS backend system.",
     },
   ];
 }
@@ -103,7 +97,7 @@ function extractProjectsData(): ContentChunk[] {
 
   data.projects.forEach((project: any) => {
     // Create a coherent project description with links included
-    const projectText = `PROJECT: ${project.name}. ${project.description}. Technologies: ${project.tags.join(", ")}.`;
+    const projectText = `Project name: ${project.name}. ${project.description}. Technologies: ${project.tags.join(", ")}.`;
 
     const linksText =
       project.links && project.links.length > 0
@@ -111,7 +105,7 @@ function extractProjectsData(): ContentChunk[] {
         : "";
 
     chunks.push({
-      slug: "/data/projects",
+      slug: "data:projects",
       title: `Project: ${project.name}`,
       content: projectText + linksText,
     });
@@ -131,7 +125,7 @@ function extractCareerData(): ContentChunk[] {
 
   data.career.forEach((job: any) => {
     // Create coherent job description with links included
-    const jobText = `COMPANY: ${job.name} - ${job.title}. Period: ${job.start}${job.end ? ` to ${job.end}` : " (Current)"}. ${job.description.join(" ")}`;
+    const jobText = `Company: ${job.name} - ${job.title}. Period: ${job.start}${job.end ? ` to ${job.end}` : " (Current)"}. ${job.description.join(" ")}`;
 
     const linksText =
       job.links && job.links.length > 0
@@ -139,7 +133,7 @@ function extractCareerData(): ContentChunk[] {
         : "";
 
     chunks.push({
-      slug: "/data/career",
+      slug: "data:career",
       title: `Career: ${job.name} - ${job.title}`,
       content: jobText + linksText,
     });
@@ -159,7 +153,7 @@ function extractEducationData(): ContentChunk[] {
 
   data.education.forEach((edu: any) => {
     // Create coherent education description with links included
-    const eduText = `EDUCATION: ${edu.name}. Degree: ${edu.title}. Period: ${edu.start} to ${edu.end}. ${edu.description ? edu.description.join(" ") : ""}`;
+    const eduText = `School: ${edu.name}. Degree: ${edu.title}. Period: ${edu.start} to ${edu.end}. ${edu.description ? edu.description.join(" ") : ""}`;
 
     const linksText =
       edu.links && edu.links.length > 0
@@ -167,7 +161,7 @@ function extractEducationData(): ContentChunk[] {
         : "";
 
     chunks.push({
-      slug: "/data/education",
+      slug: "data:education",
       title: `Education: ${edu.name}`,
       content: eduText + linksText,
     });
@@ -189,13 +183,13 @@ function extractSocialsData(): ContentChunk[] {
       let description = "";
       switch (social.name) {
         case "LinkedIn":
-          description = " - Professional network and career updates";
+          description = " - Connect professionally and view my resume";
           break;
         case "GitHub":
-          description = " - Open source projects and code repositories";
+          description = " - Explore my code repositories and projects";
           break;
         case "Email":
-          description = " - Direct professional communication";
+          description = " - Preferred communication, send me a direct email";
           break;
       }
       return `${social.name}: ${social.href}${description}`;
@@ -204,7 +198,7 @@ function extractSocialsData(): ContentChunk[] {
 
   return [
     {
-      slug: "/data/socials",
+      slug: "data:socials",
       title: "Social Media Links",
       content: socialsContent,
     },
@@ -212,50 +206,29 @@ function extractSocialsData(): ContentChunk[] {
 }
 
 /**
- * Extract site navigation structure and available routes
+ * Extract site navigation structure and available routes dynamically
  */
 function extractNavigationContent(): ContentChunk[] {
-  const routes = [
-    {
-      path: "/",
-      title: "Home",
-      description: "Personal introduction and portfolio overview",
-    },
-    {
-      path: "/projects",
-      title: "Projects",
-      description: "Portfolio projects showcase",
-    },
-    {
-      path: "/blog",
-      title: "Blog",
-      description: "Technical articles and project updates",
-    },
-    {
-      path: "/contact",
-      title: "Contact",
-      description: "Contact form and communication",
-    },
-    {
-      path: "/privacy",
-      title: "Privacy",
-      description: "Privacy policy and data handling",
-    },
-  ];
+  const routesFilePath = path.join(process.cwd(), "src/data/routes.json");
+  const routesData = JSON.parse(fs.readFileSync(routesFilePath, "utf-8"));
 
-  // Create a single coherent navigation chunk
-  const navigationContent = routes
-    .map((route) => `${route.path} - ${route.title}: ${route.description}`)
+  // Create navigation content from all routes
+  const navigationContent = routesData.routes
+    .map(
+      (route: any) => `'${route.path}' - ${route.name}: ${route.description}`,
+    )
+    .join(" | ");
+
+  // Add external links
+  const externalLinksContent = routesData.externalLinks
+    .map((link: any) => `'${link.path}' - ${link.name}: ${link.description}`)
     .join(" | ");
 
   return [
     {
-      slug: "/navigation",
+      slug: "data:routes",
       title: "Site Navigation",
-      content: `Available Routes: ${navigationContent} | External: Resume: /resume.pdf - Professional resume document | Instagram: https://www.instagram.com/gomugomu.cat - Ted Lead for escalations (joke reference to cat's account)`,
-      metadata: createEnrichment(
-        "Ted Lead is a joke reference to my cat's Instagram account for escalations",
-      ),
+      content: `Available Routes: ${navigationContent} | External Links: ${externalLinksContent}`,
     },
   ];
 }
@@ -286,7 +259,7 @@ function extractAllContent(): ExtractedContent {
  */
 function main() {
   try {
-    console.log("Starting simplified content extraction...");
+    console.log("Starting content extraction...");
 
     const extractedContent = extractAllContent();
 
@@ -304,7 +277,7 @@ function main() {
       "utf-8",
     );
 
-    console.log(`Simplified content extraction completed successfully!`);
+    console.log(`Content extraction completed successfully!`);
     console.log(`Output saved to: ${outputPath}`);
     console.log(
       `Total content chunks extracted: ${extractedContent.content.length}`,

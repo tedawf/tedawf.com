@@ -2,24 +2,16 @@ import Link from "next/link";
 import ChatToggle from "./ChatToggle";
 import ThemeToggle from "./ThemeToggle";
 
-const navLinks = [
-  {
-    name: "home",
-    href: "/",
-  },
-  {
-    name: "projects",
-    href: "/projects",
-  },
-  {
-    name: "blog",
-    href: "/blog",
-  },
-  {
-    name: "contact",
-    href: "/contact",
-  },
-];
+import routesData from "@/data/routes.json";
+import { title } from "process";
+
+const navLinks = routesData.routes
+  .filter(route => route.showInNav)
+  .map(route => ({
+    name: route.name,
+    href: route.path,
+    title: route.description,
+  }));
 
 export default function Header() {
   return (
@@ -29,7 +21,7 @@ export default function Header() {
           <ul className="flex gap-4 sm:gap-8">
             {navLinks.map((nav, id) => (
               <li key={id} className="link">
-                <Link href={nav.href}>{nav.name}</Link>
+                <Link href={nav.href} title={nav.title}>{nav.name}</Link>
               </li>
             ))}
           </ul>
