@@ -20,7 +20,8 @@ const TACOS_API_KEY = process.env.TACOS_API_KEY || "";
 
 const fetchWithApiKey = async (url: string) => {
   const res = await fetch(url, {
-    cache: "no-store",
+    // Use revalidate for static generation in production, no-store for development
+    next: process.env.NODE_ENV === "production" ? { revalidate: 3600 } : undefined,
     headers: {
       "X-TACOS-Key": TACOS_API_KEY,
     },

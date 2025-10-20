@@ -14,10 +14,14 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
+import homeContent from "@/data/home.json";
+
 const TED_BIRTH_YEAR = 1997;
 const LIMIT = 2; // max show 2
 
 export default async function Home() {
+  const currentAge = new Date().getFullYear() - TED_BIRTH_YEAR;
+
   const posts = (await getPosts())
     .filter((post) => !post.draft)
     .slice(0, LIMIT);
@@ -29,38 +33,37 @@ export default async function Home() {
 
         <div className="flex max-w-[320px] flex-col sm:max-w-full">
           <h1 className="title text-balance text-4xl sm:text-5xl">
-            hi ted here. 👋
+            {homeContent.introduction.greeting}
           </h1>
 
           <p className="mt-2 whitespace-nowrap text-sm font-medium sm:text-base">
-            {new Date().getFullYear() - TED_BIRTH_YEAR}
-            yo software engineer from Singapore 🇸🇬
+            {currentAge} yo software engineer from Singapore 🇸🇬
           </p>
 
           <p className="mt-4 max-w-sm text-balance text-sm sm:text-base">
-            Backend by trade, full-stack by passion. I build and self-host the
-            lot.
+            {homeContent.introduction.description}
           </p>
 
           <div className="mt-6 flex items-center gap-1">
             <p className="text-balance text-sm font-semibold sm:text-base">
-              For Q&A, start a chat with Ted Support
+              {homeContent.introduction.chatPrompt}
             </p>
             <ArrowDownRight className="hidden size-5 animate-bounce sm:block" />
             <ArrowDown className="block size-5 animate-bounce sm:hidden" />
           </div>
 
           <p className="mt-1 text-xs font-light">
-            For escalations, please find my
+            {homeContent.introduction.escalation.text}
             <Link
-              href="https://www.instagram.com/gomugomu.cat"
+              href={homeContent.escalationLink.href}
               target="_blank"
               className="link font-semibold"
-              title="meow"
+              title={homeContent.escalationLink.title}
             >
-              &nbsp;Ted Lead&nbsp;
+              &nbsp;{homeContent.introduction.escalation.linkText}
+              &nbsp;
             </Link>
-            instead.
+            {homeContent.introduction.escalation.suffix}
           </p>
 
           <section className="mt-6 flex flex-wrap items-center gap-4">
