@@ -81,10 +81,31 @@ async function pushContent(): Promise<void> {
 }
 
 /**
+ * Check if we should run content push
+ */
+function shouldRunPush(): boolean {
+  // Only run in production environment
+  const isProduction = process.env.VERCEL_ENV === "production";
+  
+  if (!isProduction) {
+    console.log("Preview/Development build detected, skipping content push");
+    console.log("Set VERCEL_ENV=production to enable content push");
+    return false;
+  }
+  
+  return true;
+}
+
+/**
  * Main execution
  */
 async function main() {
   try {
+    // Check if we should run push
+    if (!shouldRunPush()) {
+      process.exit(0);
+    }
+    
     await pushContent();
   } catch (error) {
     console.error("Error during content push:", error);

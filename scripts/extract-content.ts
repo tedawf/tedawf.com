@@ -280,6 +280,14 @@ function main() {
     console.log(
       `Total content chunks extracted: ${extractedContent.content.length}`,
     );
+    
+    // Output extracted content summary for build logs
+    console.log("\n--- Extracted Content Summary ---");
+    extractedContent.content.forEach((chunk, index) => {
+      console.log(`[${index + 1}] ${chunk.slug}: ${chunk.title}`);
+      console.log(`     Content preview: ${chunk.content.substring(0, 100)}...`);
+    });
+    console.log("--- End of Content Summary ---\n");
   } catch (error) {
     console.error("Error during content extraction:", error);
     process.exit(1);
