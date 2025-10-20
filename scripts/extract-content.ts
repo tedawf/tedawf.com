@@ -2,19 +2,17 @@
 
 import * as fs from "fs";
 import * as path from "path";
+import { ContentChunk, ExtractedContent } from "./content-types";
 
-interface ContentChunk {
-  slug: string;
-  title: string;
-  content: string;
-  metadata?: {
-    enrichment?: string;
-  };
-}
-
-interface ExtractedContent {
-  timestamp: string;
-  content: ContentChunk[];
+/**
+ * Convert string to kebab-case
+ */
+function toKebabCase(str: string): string {
+  return str
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .trim();
 }
 
 /**
@@ -105,7 +103,7 @@ function extractProjectsData(): ContentChunk[] {
         : "";
 
     chunks.push({
-      slug: "data:projects",
+      slug: `projects:${toKebabCase(project.name)}`,
       title: `Project: ${project.name}`,
       content: projectText + linksText,
     });
@@ -133,7 +131,7 @@ function extractCareerData(): ContentChunk[] {
         : "";
 
     chunks.push({
-      slug: "data:career",
+      slug: `career:${toKebabCase(job.name)}-${toKebabCase(job.title)}`,
       title: `Career: ${job.name} - ${job.title}`,
       content: jobText + linksText,
     });
@@ -161,7 +159,7 @@ function extractEducationData(): ContentChunk[] {
         : "";
 
     chunks.push({
-      slug: "data:education",
+      slug: `education:${toKebabCase(edu.name)}`,
       title: `Education: ${edu.name}`,
       content: eduText + linksText,
     });
@@ -198,7 +196,7 @@ function extractSocialsData(): ContentChunk[] {
 
   return [
     {
-      slug: "data:socials",
+      slug: "socials:links",
       title: "Social Media Links",
       content: socialsContent,
     },
@@ -226,7 +224,7 @@ function extractNavigationContent(): ContentChunk[] {
 
   return [
     {
-      slug: "data:routes",
+      slug: "navigation:routes",
       title: "Site Navigation",
       content: `Available Routes: ${navigationContent} | External Links: ${externalLinksContent}`,
     },
