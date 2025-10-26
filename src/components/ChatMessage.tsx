@@ -16,14 +16,14 @@ export default function ChatMessage({
   return (
     <div
       className={cn(
-        "mb-3 flex items-center",
+        "mb-2 flex items-start sm:mb-3",
         isBot ? "justify-start" : "justify-end",
       )}
     >
-      {isBot && <Bot className="mr-2" />}
+      {isBot && <Bot className="mr-1.5 mt-0.5 size-4 sm:mr-2 sm:size-5" />}
       <div
         className={cn(
-          "max-w-64 rounded border px-3 py-2",
+          "max-w-[200px] rounded border px-2 py-1.5 text-sm sm:max-w-64 sm:px-3 sm:py-2 sm:text-base",
           isBot ? "bg-background" : "bg-foreground text-background",
         )}
       >

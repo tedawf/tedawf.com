@@ -34,23 +34,26 @@ export default function ChatInput({
 }: ChatInputProps) {
   console.log(messages);
   return (
-    <form onSubmit={handleSubmit} className="flex gap-1 border-t px-2 py-3">
+    <form
+      onSubmit={handleSubmit}
+      className="flex gap-1.5 border-t px-2 py-2 sm:gap-2 sm:px-3 sm:py-2.5"
+    >
       <Button
         title="Clear chat"
         variant="outline"
         onClick={() => setMessages([])}
-        className="px-3 py-2"
+        className="h-7 px-2 py-1 sm:h-8 sm:px-2.5 sm:py-1.5"
         disabled={messages.length === 0}
         type="button"
       >
-        <Trash className="size-4 text-rose-500" />
+        <Trash className="size-3 text-rose-500 sm:size-3.5" />
       </Button>
       <Input
         autoFocus
         placeholder="Ask something..."
-        // className="bg-muted"
         value={input}
         onChange={handleInputChange}
+        className="h-7 text-sm sm:h-8"
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             e.preventDefault();
@@ -61,11 +64,11 @@ export default function ChatInput({
       <Button
         title="Send message"
         variant="default"
-        className="px-3 py-2"
+        className="h-7 px-2 py-1 sm:h-8 sm:px-2.5 sm:py-1.5"
         disabled={input.length === 0}
         type="submit"
       >
-        <SendHorizontal className="size-4" />
+        <SendHorizontal className="size-3 sm:size-3.5" />
       </Button>
     </form>
   );

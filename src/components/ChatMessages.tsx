@@ -2,17 +2,20 @@ import { Message } from "ai";
 import { Bot, Loader2 } from "lucide-react";
 import { useEffect, useRef } from "react";
 import ChatMessage from "./ChatMessage";
+import ChatPrompts from "./ChatPrompts";
 
 interface ChatMessagesProps {
   messages: Message[];
   error: Error | undefined;
   isLoading: boolean;
+  onPromptClick?: (prompt: string) => void;
 }
 
 export default function ChatMessages({
   messages,
   error,
   isLoading,
+  onPromptClick,
 }: ChatMessagesProps) {
   const isLastMessageUser = messages[messages.length - 1]?.role === "user";
 
@@ -25,7 +28,7 @@ export default function ChatMessages({
   }, [messages]);
 
   return (
-    <div className="h-full overflow-y-auto p-3" ref={scrollRef}>
+    <div className="h-full overflow-y-auto p-2 sm:p-3" ref={scrollRef}>
       <ul>
         {messages.map((msg) => (
           <li key={msg.id}>
@@ -36,12 +39,26 @@ export default function ChatMessages({
 
       {/* empty */}
       {!error && messages.length === 0 && (
-        <div className="mt-16 flex h-full flex-col items-center justify-center gap-2">
-          <Bot />
-          <p className="font-medium">Send a message to start the chat!</p>
-          <p className="text-center text-xs text-muted-foreground">
+        <div className="flex h-full flex-col items-center justify-center gap-2 p-3 sm:gap-3 sm:p-4">
+          <Bot className="size-6 sm:size-8" />
+          <p className="text-sm font-medium">
+            Send a message to start the chat!
+          </p>
+          <p className="max-w-[200px] text-center text-xs text-muted-foreground sm:max-w-[250px]">
             You can ask the bot anything about me and it will help to find the
             relevant information!
+          </p>
+          {onPromptClick && <ChatPrompts onPromptClick={onPromptClick} />}
+          <p className="text-center text-xs text-muted-foreground">
+            Powered by my{" "}
+            <a
+              href="https://github.com/tediverse/tacos"
+              className="underline underline-offset-2 hover:text-primary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              TACOS API
+            </a>
           </p>
         </div>
       )}
