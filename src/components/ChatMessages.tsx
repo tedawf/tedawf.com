@@ -19,16 +19,23 @@ export default function ChatMessages({
 }: ChatMessagesProps) {
   const isLastMessageUser = messages[messages.length - 1]?.role === "user";
 
-  // Scroll to new messages automatically
+  // Scroll to new messages automatically with smooth behavior
   const scrollRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+      const scrollOptions: ScrollToOptions = {
+        top: scrollRef.current.scrollHeight,
+        behavior: "smooth",
+      };
+      scrollRef.current.scrollTo(scrollOptions);
     }
   }, [messages]);
 
   return (
-    <div className="h-full overflow-y-auto p-2 sm:p-3" ref={scrollRef}>
+    <div
+      className="h-full overflow-y-auto overscroll-contain scroll-smooth p-2 sm:p-3"
+      ref={scrollRef}
+    >
       <ul>
         {messages.map((msg) => (
           <li key={msg.id}>

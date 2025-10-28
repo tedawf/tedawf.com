@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  darkMode: 'selector',
+  darkMode: "selector",
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -84,6 +84,30 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@tailwindcss/typography"),
+    // Custom plugin for iOS-specific improvements
+    function ({ addUtilities }: { addUtilities: any }) {
+      addUtilities({
+        ".ios-prevent-zoom": {
+          "@media (max-width: 639px)": {
+            "font-size": "16px !important",
+          },
+          "@media (min-width: 640px)": {
+            "font-size": "0.875rem !important",
+          },
+        },
+        ".touch-target": {
+          "min-height": "36px",
+          "min-width": "36px",
+          "@media (min-width: 640px)": {
+            "min-height": "40px",
+            "min-width": "40px",
+          },
+        },
+      });
+    },
+  ],
 };
 export default config;
