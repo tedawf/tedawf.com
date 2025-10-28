@@ -50,14 +50,14 @@ export default function ChatMessages({
           </p>
           {onPromptClick && <ChatPrompts onPromptClick={onPromptClick} />}
           <p className="text-center text-xs text-muted-foreground">
-            Powered by my{" "}
+            Powered by{" "}
             <a
               href="https://github.com/tediverse/tacos"
               className="underline underline-offset-2 hover:text-primary"
               target="_blank"
               rel="noopener noreferrer"
             >
-              TACOS API
+              TACOS
             </a>
           </p>
         </div>
