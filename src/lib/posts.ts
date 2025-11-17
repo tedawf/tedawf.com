@@ -9,6 +9,7 @@ export type PostSummary = {
   tags: string[];
   readingTime: string;
   draft: boolean;
+  coAuthors?: string[];
 };
 
 export type PostDetail = PostSummary & {

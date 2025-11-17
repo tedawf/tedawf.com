@@ -11,6 +11,7 @@ import {
   CalendarIcon,
   ClockIcon,
   Edit3Icon,
+  UsersIcon,
 } from "lucide-react";
 import { notFound } from "next/navigation";
 
@@ -63,6 +64,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
     summary,
     readingTime,
     draft,
+    coAuthors,
   } = post;
 
   const shouldShowUpdated =
@@ -166,6 +168,19 @@ export default async function Post({ params }: { params: { slug: string } }) {
                       {tag}
                     </Badge>
                   ))}
+                </div>
+              )}
+
+              {/* Co-authors */}
+              {coAuthors && coAuthors.length > 0 && (
+                <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+                  <UsersIcon className="h-4 w-4" />
+                  <span>
+                    Co-authored with{" "}
+                    <span className="font-semibold text-foreground">
+                      {coAuthors.join(", ")}
+                    </span>
+                  </span>
                 </div>
               )}
             </div>
