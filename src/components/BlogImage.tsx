@@ -1,9 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { ZoomIn } from "lucide-react";
+import { ExternalLink, Maximize2, X } from "lucide-react";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
 
 interface BlogImageProps {
   src: string;
@@ -13,50 +20,92 @@ interface BlogImageProps {
   className?: string;
 }
 
-export default function BlogImage({ 
-  src, 
-  alt, 
-  width = 1200, 
+export default function BlogImage({
+  src,
+  alt,
+  width = 1200,
   height = 800,
-  className 
+  className,
 }: BlogImageProps) {
-  const handleZoom = () => {
-    window.open(src, '_blank');
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+
+  const handleOpenInNewTab = () => {
+    window.open(src, "_blank", "noopener,noreferrer");
   };
 
   return (
-    <div className={cn("mb-16", className)}>
-      <div className="group relative w-full overflow-hidden rounded-2xl">
-        <Image
-          src={src}
-          alt={alt}
-          className="h-auto w-full transition-all duration-300 group-hover:scale-[1.02] group-hover:shadow-2xl group-hover:shadow-black/10 dark:group-hover:shadow-black/40"
-          width={width}
-          height={height}
-          priority
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-        />
-        
-        {/* Interactive overlay */}
-        <div className="absolute inset-0 bg-black/0 transition-all duration-300 group-hover:bg-black/10">
-          <Button
-            variant="secondary"
-            size="icon"
-            className="absolute right-4 top-4 h-10 w-10 opacity-0 backdrop-blur-md transition-all duration-300 group-hover:opacity-100 hover:scale-110"
-            onClick={handleZoom}
-            aria-label="Open image in full size"
-          >
-            <ZoomIn className="h-4 w-4" />
-          </Button>
-        </div>
-        
-        {/* Click area for mobile */}
-        <button
-          className="absolute inset-0 cursor-zoom-in focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
-          onClick={handleZoom}
-          aria-label="Click to open image in full size"
-        />
+    <Dialog open={isLightboxOpen} onOpenChange={setIsLightboxOpen}>
+      <div className={cn("mb-16", className)}>
+        <figure className="relative w-full">
+          <DialogTrigger asChild>
+            <button
+              type="button"
+              className="block w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+              aria-label="View full size"
+            >
+              <Image
+                src={src}
+                alt={alt}
+                width={width}
+                height={height}
+                className="h-auto w-full rounded-[32px] object-cover"
+                priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+              />
+            </button>
+          </DialogTrigger>
+
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-32 rounded-b-[32px] bg-gradient-to-t from-background/90 via-background/60 to-transparent"
+            aria-hidden
+          />
+
+          <div className="absolute inset-x-0 bottom-5 flex justify-center gap-3 text-sm font-medium">
+            <DialogTrigger asChild>
+              <Button
+                variant="secondary"
+                size="sm"
+                className="pointer-events-auto rounded-full px-4 shadow-lg bg-white text-foreground hover:bg-white/90 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700"
+                aria-label="Open preview"
+              >
+                <Maximize2 className="h-4 w-4" />
+                View full size
+              </Button>
+            </DialogTrigger>
+            <Button
+              variant="secondary"
+              size="sm"
+              className="pointer-events-auto rounded-full px-4 shadow-lg bg-white text-foreground hover:bg-white/90 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700"
+              onClick={handleOpenInNewTab}
+              aria-label="Open in new tab"
+            >
+              <ExternalLink className="h-4 w-4" />
+              Open in new tab
+            </Button>
+          </div>
+        </figure>
       </div>
-    </div>
+
+      <DialogContent className="w-full max-w-[min(92vw,1200px)] border-none bg-transparent p-0 shadow-none [&>button:last-of-type]:hidden">
+        <div className="relative mx-auto flex min-h-[60vh] w-full items-center justify-center px-4 py-10">
+          <DialogClose
+            className="absolute right-6 top-6 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-foreground shadow-lg transition hover:bg-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700"
+            aria-label="Close image viewer"
+          >
+            <X className="h-5 w-5" />
+          </DialogClose>
+
+          <Image
+            src={src}
+            alt={alt}
+            width={width}
+            height={height}
+            className="h-auto max-h-[88vh] w-full max-w-[min(90vw,1200px)] select-none rounded-[32px] object-contain"
+            priority={false}
+            sizes="100vw"
+          />
+        </div>
+      </DialogContent>
+    </Dialog>
   );
 }
