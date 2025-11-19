@@ -10,6 +10,7 @@ export type PostSummary = {
   readingTime: string;
   draft: boolean;
   coAuthors?: string[];
+  views?: number;
 };
 
 export type PostDetail = PostSummary & {

@@ -1,6 +1,6 @@
 import { PostSummary } from "@/lib/posts";
-import { formatDate } from "@/lib/utils";
-import { Calendar, Clock, Edit3 } from "lucide-react";
+import { formatDate, formatViews } from "@/lib/utils";
+import { Calendar, Clock, Edit3, Eye } from "lucide-react";
 import Link from "next/link";
 import { Badge } from "./ui/Badge";
 import { Card } from "./ui/Card";
@@ -17,6 +17,7 @@ export default function Posts({ posts }: Props) {
       <Card className="overflow-hidden">
         <ul className="divide-y divide-border">
           {posts.map((post) => {
+            const viewCount = typeof post.views === "number" ? post.views : 0;
             return (
               <li key={post.slug} className="group">
                 <Link href={`/blog/${post.slug}`} className="block">
@@ -31,7 +32,7 @@ export default function Posts({ posts }: Props) {
 
                           {/* Draft badge */}
                           {post.draft && (
-                            <Badge className="bg-orange-500 text-white text-xs">
+                            <Badge className="bg-orange-500 text-xs text-white">
                               Draft
                             </Badge>
                           )}
@@ -93,6 +94,12 @@ export default function Posts({ posts }: Props) {
                         <div className="flex items-center gap-1.5">
                           <Clock className="h-3.5 w-3.5" />
                           <span>{post.readingTime} read</span>
+                        </div>
+
+                        {/* Views */}
+                        <div className="flex items-center gap-1.5">
+                          <Eye className="h-3.5 w-3.5" />
+                          <span>{formatViews(viewCount)} views</span>
                         </div>
                       </div>
                     </div>

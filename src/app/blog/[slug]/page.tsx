@@ -1,6 +1,7 @@
 import BlogImage from "@/components/BlogImage";
 import LinkWithIcon from "@/components/LinkWithIcon";
 import MDXContent from "@/components/MDXContent";
+import ViewCounter from "@/components/ViewCounter";
 import { Badge } from "@/components/ui/Badge";
 import { Separator } from "@/components/ui/Separator";
 import { getPostBySlug, getPosts } from "@/lib/posts";
@@ -10,6 +11,7 @@ import {
   ArrowLeftIcon,
   CalendarIcon,
   ClockIcon,
+  EyeIcon,
   Edit3Icon,
   UsersIcon,
 } from "lucide-react";
@@ -65,7 +67,10 @@ export default async function Post({ params }: { params: { slug: string } }) {
     readingTime,
     draft,
     coAuthors,
+    views,
   } = post;
+
+  const initialViewCount = typeof views === "number" ? views : 0;
 
   const shouldShowUpdated =
     updatedAt &&
@@ -128,6 +133,17 @@ export default async function Post({ params }: { params: { slug: string } }) {
                 <div className="flex items-center gap-1.5">
                   <ClockIcon className="h-4 w-4" />
                   <span>{readingTime}</span>
+                </div>
+
+                <Separator
+                  orientation="vertical"
+                  className="hidden h-4 sm:block"
+                />
+
+                {/* Views */}
+                <div className="flex items-center gap-1.5">
+                  <EyeIcon className="h-4 w-4" />
+                  <ViewCounter slug={slug} initialCount={initialViewCount} />
                 </div>
 
                 <Separator
