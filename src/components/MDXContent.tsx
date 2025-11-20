@@ -3,6 +3,7 @@ import { JSX } from "react";
 import remarkGfm from "remark-gfm";
 import { highlight } from "sugar-high";
 import Counter from "./Counter";
+import Mermaid from "./Mermaid";
 import {
   Table as UITable,
   TableBody as UITableBody,
@@ -14,7 +15,13 @@ import {
 import { cn } from "@/lib/utils";
 
 function Code({ children, ...props }: any) {
-  let codeHTML = highlight(children);
+  const className = props.className ?? "";
+
+  if (className.includes("language-mermaid")) {
+    return <Mermaid chart={String(children).trim()} />;
+  }
+
+  let codeHTML = highlight(String(children));
   return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
 }
 
