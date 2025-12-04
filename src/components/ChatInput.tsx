@@ -20,6 +20,7 @@ interface ChatInputProps extends HTMLAttributes<HTMLFormElement> {
   setMessages: (
     messages: Message[] | ((messages: Message[]) => Message[]),
   ) => void;
+  onClearChat?: () => void;
   isLoading: boolean;
   messages: Message[];
 }
@@ -29,10 +30,10 @@ export default function ChatInput({
   handleSubmit,
   handleInputChange,
   setMessages,
+  onClearChat,
   isLoading,
   messages,
 }: ChatInputProps) {
-  console.log(messages);
   return (
     <form
       onSubmit={handleSubmit}
@@ -41,8 +42,11 @@ export default function ChatInput({
       <Button
         title="Clear chat"
         variant="outline"
-        onClick={() => setMessages([])}
-        className="touch-target h-9 px-3 py-2 sm:h-10 sm:px-4 sm:py-2.5"
+        onClick={() => {
+          setMessages([]);
+          onClearChat?.();
+        }}
+        className="h-9 px-3 py-2 touch-target sm:h-10 sm:px-4 sm:py-2.5"
         disabled={messages.length === 0}
         type="button"
       >
@@ -64,7 +68,7 @@ export default function ChatInput({
       <Button
         title="Send message"
         variant="default"
-        className="touch-target h-9 px-3 py-2 sm:h-10 sm:px-4 sm:py-2.5"
+        className="h-9 px-3 py-2 touch-target sm:h-10 sm:px-4 sm:py-2.5"
         disabled={input.length === 0}
         type="submit"
       >
