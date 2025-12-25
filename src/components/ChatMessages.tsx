@@ -59,7 +59,7 @@ export default function ChatMessages({
           <p className="text-center text-xs text-muted-foreground">
             Powered by{" "}
             <a
-              href="https://github.com/tediverse/tacos"
+              href="https://github.com/tedawf/tacos"
               className="underline underline-offset-2 hover:text-primary"
               target="_blank"
               rel="noopener noreferrer"
