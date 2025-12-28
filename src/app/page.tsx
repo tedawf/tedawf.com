@@ -37,7 +37,7 @@ export default async function Home() {
           </h1>
 
           <p className="mt-2 whitespace-nowrap text-sm font-medium sm:text-base">
-            {currentAge} yo software engineer from Singapore 🇸🇬
+            {currentAge}yo software engineer from Singapore 🇸🇬
           </p>
 
           <p className="mt-4 max-w-sm text-balance text-sm sm:text-base">
@@ -53,16 +53,16 @@ export default async function Home() {
           </div>
 
           <p className="mt-1 text-xs font-light">
-            {homeContent.introduction.escalation.text}
+            {homeContent.introduction.escalation.text}&nbsp;
             <Link
               href={homeContent.escalationLink.href}
               target="_blank"
-              className="link font-semibold"
+              className="link font-semibold underline"
               title={homeContent.escalationLink.title}
             >
-              &nbsp;{homeContent.introduction.escalation.linkText}
-              &nbsp;
+              {homeContent.introduction.escalation.linkText}
             </Link>
+            &nbsp;
             {homeContent.introduction.escalation.suffix}
           </p>
 

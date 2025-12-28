@@ -9,11 +9,37 @@ const allPrompts = [
   "Tell me about Ted's experience",
   "What projects has Ted worked on?",
   "What technologies does Ted use?",
-  "How can I contact Ted?",
-  "What's Ted's educational background?",
   "What is Ted's current role?",
   "Tell me about Ted's skills",
   "What companies has Ted worked at?",
+
+  // Portfolio & career
+  "What is Ted currently working on?",
+  "What kind of developer is Ted?",
+  "What problems does Ted like solving?",
+  "What areas is Ted strongest in?",
+  "What is Ted focusing on learning now?",
+
+  // Projects & blog
+  "Which project best represents Ted's work?",
+  "What was the motivation behind Ted's projects?",
+  "What technical challenges has Ted written about?",
+  "What tools or frameworks does Ted frequently mention?",
+  "What has Ted built outside of work?",
+
+  // Engineering approach
+  "How does Ted approach system design?",
+  "What does Ted care about in clean architecture?",
+  "How does Ted balance speed vs correctness?",
+  "What engineering principles does Ted follow?",
+  "What tradeoffs does Ted often discuss?",
+
+  // Practical / conversational
+  "What can you help me with?",
+  "Where should I start if I want to explore Ted's work?",
+  "What should I read to understand Ted's thinking?",
+  "Is Ted more backend or frontend focused?",
+  "How can I contact Ted?"
 ];
 
 function getRandomPrompts(prompts: string[], count: number): string[] {

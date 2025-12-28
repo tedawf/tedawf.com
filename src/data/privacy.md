@@ -1,41 +1,41 @@
-Last Updated: Sep 2024
+_Last Updated: Dec 2025_
 
-## Hey, Welcome!
+## TL;DR
 
-Thanks for stopping by! This **Privacy Policy** is just here to let you know how things work around here. My website is mainly about showcasing my work, and I'm all about respecting your privacy.
+This site doesn’t track you. If you use the chatbot, messages are stored in my database so I can see what people are asking and improve the site.
 
-## What Information I Collect (Hint: Not Much)
+## Hey 👋
 
-Honestly, this is just a static portfolio site, so I don't actively collect any personal information. There's no account creation, no tracking cookies, and definitely no sneaky data gathering.
+Thanks for stopping by. This is my personal portfolio and blog where I share my work, projects, and thoughts. I care about privacy, so here’s a simple, no-nonsense explanation of how things work.
 
-### 1. Chatbot Conversations
+## What I collect (and why)
 
-If you send a message through the chatbot, it might be stored for caching and training purposes. So please avoid sharing any confidential info in the chat.
+This site is mostly static. There are no accounts, no ads, and no tracking cookies watching what you do.
 
-### 2. Contact Info
+There are only a couple of cases where information might be stored:
 
-If you reach out via email or the contact form, the info you provide is entirely up to you. I'll only use it to reply and have a conversation with you-no funny business.
+### Chatbot messages
 
-## How I Use the Info
+If you use the chatbot, the messages are stored in my own database. I use them purely to understand what people are asking about, spot gaps in the site, and improve the chatbot and content over time.
 
-Here's what I might do with any information I collect:
+I’m the only one looking at this data. It’s not shared or sold. Please don’t put anything sensitive or offensive into the chat.
 
-- Make sure the site is running smoothly
-- Improve the website based on feedback you might share
-- Respond to your questions or feedback
+### Contacting me
 
-## Sharing Your Info (Spoiler: I Don't)
+If you email me or use the contact form, I’ll only use your email to reply and continue the conversation.
 
-I don't sell, trade, or rent your personal info. If you shared something sensitive by accident, feel free to reach out, and I'll help you remove it.
+## How I use the info
 
-## Security (The Internet Isn't Perfect)
+Any information that’s collected is used to:
 
-I'll do my best to keep any info you share safe, but let's be real-no system is foolproof. While I'll take reasonable steps to protect your info, I can't promise 100% security.
+- Keep the site running properly
+- Improve the site and content
+- Respond to messages and feedback
 
-## Policy Updates (No Surprises)
+That’s it.
 
-This policy is current as of **Sep 2024**. If I make any changes, I'll update it here, so you're always in the loop. Feel free to check back occasionally, but don't worry-I'm not making any big changes without letting you know.
+I don’t sell, trade, or rent personal data. If you accidentally share something you’d rather not have stored, just let me know and I’ll remove it.
 
-## Got Questions?
+## Questions?
 
-If you any questions, concerns, or just want to say hi, drop me an email at [hello@tedawf.com](mailto:hello@tedawf.com) or use the [contact form](/contact). I'd love to hear from you!
+If you have questions, concerns, or just want to say hi, email me at [hello@tedawf.com](mailto:hello@tedawf.com) or use the [contact form](/contact). Happy to chat.
