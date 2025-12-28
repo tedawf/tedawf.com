@@ -33,7 +33,7 @@ export default function ChatMessages({
 
   return (
     <div
-      className="h-full overflow-y-auto overscroll-contain scroll-smooth p-2 sm:p-3"
+      className="h-full min-w-0 overflow-y-auto overflow-x-hidden overscroll-contain scroll-smooth p-2 sm:p-3"
       ref={scrollRef}
     >
       <ul>

@@ -23,7 +23,7 @@ export default function ChatMessage({
       {isBot && <Bot className="mr-2 mt-0.5 size-4 sm:mr-2.5 sm:size-5" />}
       <div
         className={cn(
-          "max-w-[220px] rounded-lg border px-3 py-2 text-sm shadow-sm sm:max-w-72 sm:px-4 sm:py-2.5 sm:text-base",
+          "min-w-0 max-w-[220px] break-words rounded-lg border px-3 py-2 text-sm shadow-sm sm:max-w-72 sm:px-4 sm:py-2.5 sm:text-base",
           isBot ? "bg-background" : "bg-foreground text-background",
         )}
       >
@@ -32,7 +32,7 @@ export default function ChatMessage({
             a: ({ node, href, ...props }) => (
               <Link
                 href={href ?? ""}
-                className="underline underline-offset-2"
+                className="break-words underline underline-offset-2"
                 {...props}
               />
             ),
