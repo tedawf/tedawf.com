@@ -118,14 +118,18 @@ type Card = {
 const cardData: Card[] = [
   {
     id: 1,
-    url: "/img/ted-2019.jpg",
+    url: "/img/ted-2018.jpg",
   },
   {
     id: 2,
-    url: "/img/ted-2024.jpg",
+    url: "/img/ted-2021.jpg",
   },
   {
     id: 3,
-    url: "/img/ted.jpg",
+    url: "/img/ted-2024.jpg",
+  },
+  {
+    id: 4,
+    url: "/img/ted-2025.jpg",
   },
 ];
