@@ -31,15 +31,20 @@ const project = z.object({
 export const projectSchema = z.object({ projects: z.array(project) });
 export type Project = z.infer<typeof project>;
 
-const experience = z.object({
-  name: z.string(),
-  href: z.string(),
+const experiencePosition = z.object({
   title: z.string(),
-  logo: z.string(),
   start: z.string(),
   end: z.string().optional(),
   description: z.array(z.string()).optional(),
   links: z.array(iconLink).optional(),
+});
+export type ExperiencePosition = z.infer<typeof experiencePosition>;
+
+const experience = z.object({
+  name: z.string(),
+  href: z.string(),
+  logo: z.string(),
+  positions: z.array(experiencePosition).min(1),
 });
 export type Experience = z.infer<typeof experience>;
 
