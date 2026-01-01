@@ -8,7 +8,8 @@ import { ExtractedContent } from "./content-types";
 import { config } from "dotenv";
 
 // Load environment variables from appropriate .env file
-const envFile = process.env.NODE_ENV === "production" ? ".env.production" : ".env.local";
+const envFile =
+  process.env.NODE_ENV === "production" ? ".env.production" : ".env.local";
 config({ path: envFile });
 
 /**
@@ -86,13 +87,13 @@ async function pushContent(): Promise<void> {
 function shouldRunPush(): boolean {
   // Only run in production environment
   const isProduction = process.env.VERCEL_ENV === "production";
-  
+
   if (!isProduction) {
     console.log("Preview/Development build detected, skipping content push");
     console.log("Set VERCEL_ENV=production to enable content push");
     return false;
   }
-  
+
   return true;
 }
 
@@ -105,7 +106,7 @@ async function main() {
     if (!shouldRunPush()) {
       process.exit(0);
     }
-    
+
     await pushContent();
   } catch (error) {
     console.error("Error during content push:", error);

@@ -160,30 +160,69 @@ function extractCareerData(): ContentChunk[] {
   const chunks: ContentChunk[] = [];
 
   data.career.forEach((job: any) => {
-    // Create coherent job description with links included
-    const jobText = `Company: ${job.name} - ${job.title}. Period: ${job.start}${job.end ? ` to ${job.end}` : " (Current)"}. ${job.description.join(" ")}`;
+    const positions =
+      Array.isArray(job.positions) && job.positions.length > 0
+        ? job.positions
+        : [
+            {
+              title: job.title,
+              start: job.start,
+              end: job.end,
+              description: job.description,
+              links: job.links,
+            },
+          ];
 
-    const linksText =
-      job.links && job.links.length > 0
-        ? ` Related Projects: ${job.links.map((link: any) => `${link.name}: ${link.href}`).join(" | ")}`
-        : "";
+    positions.forEach((position: any) => {
+      const roleTitle = position.title ?? job.title ?? "Role";
+      const start = position.start ?? job.start;
+      const end = position.end ?? job.end;
+      const description = Array.isArray(position.description)
+        ? position.description
+        : position.description
+          ? [position.description]
+          : Array.isArray(job.description)
+            ? job.description
+            : job.description
+              ? [job.description]
+              : [];
+      const links = Array.isArray(position.links)
+        ? position.links
+        : Array.isArray(job.links)
+          ? job.links
+          : [];
+      const period = start
+        ? `${start}${end ? ` to ${end}` : " (Current)"}`
+        : end
+          ? `Until ${end}`
+          : "";
+      const jobText =
+        `Company: ${job.name}${roleTitle ? ` - ${roleTitle}` : ""}.${period ? ` Period: ${period}.` : ""} ${description.join(" ")}`.trim();
 
-    chunks.push({
-      slug: `career:${toKebabCase(job.name)}-${toKebabCase(job.title)}`,
-      title: `Career: ${job.name} - ${job.title}`,
-      content: jobText + linksText,
-      metadata: {
-        contentType: "career",
-        enrichment: [
-          `I worked at ${job.name} as a ${job.title}`,
-          `My role at ${job.name} was ${job.title}`,
-          `I was employed at ${job.name} from ${job.start}${job.end ? ` to ${job.end}` : " to present"}`,
-          `During my time at ${job.name}, I worked as a ${job.title}`,
-          `My employment history includes working at ${job.name}`,
-          `I gained experience at ${job.name} in the ${job.name.includes("Bank") ? "finance" : job.name.includes("Institute") ? "education" : "technology"} industry`,
-          `This was a ${job.title.includes("Intern") ? "internship position" : job.title.includes("Graduate") ? "entry-level graduate role" : "professional position"}`,
-        ],
-      },
+      const linksText =
+        links.length > 0
+          ? ` Related Projects: ${links.map((link: any) => `${link.name}: ${link.href}`).join(" | ")}`
+          : "";
+
+      chunks.push({
+        slug: `career:${toKebabCase(job.name)}-${toKebabCase(roleTitle)}`,
+        title: `Career: ${job.name}${roleTitle ? ` - ${roleTitle}` : ""}`,
+        content: jobText + linksText,
+        metadata: {
+          contentType: "career",
+          enrichment: [
+            `I worked at ${job.name} as a ${roleTitle}`,
+            `My role at ${job.name} was ${roleTitle}`,
+            period
+              ? `I was employed at ${job.name} from ${start}${end ? ` to ${end}` : " to present"}`
+              : `I was employed at ${job.name}`,
+            `During my time at ${job.name}, I worked as a ${roleTitle}`,
+            `My employment history includes working at ${job.name}`,
+            `I gained experience at ${job.name} in the ${job.name.includes("Bank") ? "finance" : job.name.includes("Institute") ? "education" : "technology"} industry`,
+            `This was a ${roleTitle.includes("Intern") ? "internship position" : roleTitle.includes("Graduate") ? "entry-level graduate role" : "professional position"}`,
+          ],
+        },
+      });
     });
   });
 
@@ -200,30 +239,72 @@ function extractEducationData(): ContentChunk[] {
   const chunks: ContentChunk[] = [];
 
   data.education.forEach((edu: any) => {
-    // Create coherent education description with links included
-    const eduText = `School: ${edu.name}. Degree: ${edu.title}. Period: ${edu.start} to ${edu.end}. ${edu.description ? edu.description.join(" ") : ""}`;
+    const positions =
+      Array.isArray(edu.positions) && edu.positions.length > 0
+        ? edu.positions
+        : [
+            {
+              title: edu.title,
+              start: edu.start,
+              end: edu.end,
+              description: edu.description,
+              links: edu.links,
+            },
+          ];
 
-    const linksText =
-      edu.links && edu.links.length > 0
-        ? ` Projects: ${edu.links.map((link: any) => `${link.name}: ${link.href}`).join(" | ")}`
-        : "";
+    positions.forEach((position: any) => {
+      const degreeTitle = position.title ?? edu.title ?? "Degree";
+      const start = position.start ?? edu.start;
+      const end = position.end ?? edu.end;
+      const description = Array.isArray(position.description)
+        ? position.description
+        : position.description
+          ? [position.description]
+          : Array.isArray(edu.description)
+            ? edu.description
+            : edu.description
+              ? [edu.description]
+              : [];
+      const links = Array.isArray(position.links)
+        ? position.links
+        : Array.isArray(edu.links)
+          ? edu.links
+          : [];
+      const period =
+        start && end
+          ? `${start} to ${end}`
+          : start
+            ? `${start}`
+            : end
+              ? `Until ${end}`
+              : "";
+      const eduText =
+        `School: ${edu.name}. Degree: ${degreeTitle}.${period ? ` Period: ${period}.` : ""} ${description.join(" ")}`.trim();
 
-    chunks.push({
-      slug: `education:${toKebabCase(edu.name)}`,
-      title: `Education: ${edu.name}`,
-      content: eduText + linksText,
-      metadata: {
-        contentType: "education",
-        enrichment: [
-          `I studied at ${edu.name} and earned a ${edu.title}`,
-          `My education includes ${edu.title} from ${edu.name}`,
-          `I attended ${edu.name} from ${edu.start} to ${edu.end}`,
-          `I completed my ${edu.title.includes("BS") ? "bachelor's degree" : "diploma"} at ${edu.name}`,
-          `My field of study was ${edu.title.includes("Computer Science") ? "computer science" : "game development"}`,
-          `I graduated from ${edu.name} with a degree in ${edu.title}`,
-          `My academic background includes ${edu.title} from ${edu.name}`,
-        ],
-      },
+      const linksText =
+        links.length > 0
+          ? ` Projects: ${links.map((link: any) => `${link.name}: ${link.href}`).join(" | ")}`
+          : "";
+
+      chunks.push({
+        slug: `education:${toKebabCase(edu.name)}-${toKebabCase(degreeTitle)}`,
+        title: `Education: ${edu.name}${degreeTitle ? ` - ${degreeTitle}` : ""}`,
+        content: eduText + linksText,
+        metadata: {
+          contentType: "education",
+          enrichment: [
+            `I studied at ${edu.name} and earned a ${degreeTitle}`,
+            `My education includes ${degreeTitle} from ${edu.name}`,
+            start && end
+              ? `I attended ${edu.name} from ${start} to ${end}`
+              : `I attended ${edu.name}`,
+            `I completed my ${degreeTitle.includes("BS") ? "bachelor's degree" : "diploma"} at ${edu.name}`,
+            `My field of study was ${degreeTitle.includes("Computer Science") ? "computer science" : "game development"}`,
+            `I graduated from ${edu.name} with a degree in ${degreeTitle}`,
+            `My academic background includes ${degreeTitle} from ${edu.name}`,
+          ],
+        },
+      });
     });
   });
 
