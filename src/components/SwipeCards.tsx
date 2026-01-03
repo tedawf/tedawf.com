@@ -1,9 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
-import { cn } from "@/lib/utils"; 
+import { cn } from "@/lib/utils";
 import { animate, motion, useMotionValue, useTransform } from "framer-motion";
 import { RefreshCw } from "lucide-react";
+import Image from "next/image";
 import { Dispatch, SetStateAction, useState } from "react";
 
 interface SwipeCardsProps {
@@ -79,10 +80,8 @@ const Card = ({
   };
 
   return (
-    <motion.img
-      src={url}
-      alt="Placeholder alt"
-      className="absolute h-[233px] w-[175px] origin-bottom rounded-lg bg-white object-cover hover:cursor-grab active:cursor-grabbing"
+    <motion.div
+      className="absolute h-[233px] w-[175px] origin-bottom overflow-hidden rounded-lg bg-white hover:cursor-grab active:cursor-grabbing"
       style={{
         gridRow: 1,
         gridColumn: 1,
@@ -104,7 +103,19 @@ const Card = ({
         bottom: 0,
       }}
       onDragEnd={handleDragEnd}
-    />
+    >
+      <Image
+        src={url}
+        alt="Photo of Ted"
+        width={175}
+        height={233}
+        sizes="175px"
+        quality={80}
+        draggable={false}
+        className="pointer-events-none h-full w-full select-none object-cover"
+        priority={isFront}
+      />
+    </motion.div>
   );
 };
 

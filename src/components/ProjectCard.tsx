@@ -29,6 +29,8 @@ export function ProjectCard({ project }: Props) {
               alt={name}
               width={500}
               height={300}
+              sizes="(max-width: 640px) 100vw, 384px"
+              quality={80}
               className="h-40 w-full object-cover object-top"
             />
           </Link>

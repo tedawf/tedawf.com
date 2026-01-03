@@ -19,10 +19,13 @@ export type PostDetail = PostSummary & {
 
 const TACOS_API_URL = process.env.TACOS_API_URL || "http://localhost:8000";
 const TACOS_API_KEY = process.env.TACOS_API_KEY || "";
+const POSTS_REVALIDATE_SECONDS = 60;
 
 const fetchWithApiKey = async (url: string) => {
   const res = await fetch(url, {
-    cache: "no-store", // Always fetch fresh content for instant updates
+    ...(process.env.NODE_ENV === "production"
+      ? { next: { revalidate: POSTS_REVALIDATE_SECONDS } }
+      : { cache: "no-store" }),
     headers: {
       "X-TACOS-Key": TACOS_API_KEY,
     },
