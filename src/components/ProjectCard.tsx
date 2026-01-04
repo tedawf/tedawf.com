@@ -7,10 +7,10 @@ import {
   CardTitle,
 } from "@/components/ui/Card";
 import { Project } from "@/lib/schemas";
-import Image from "next/image";
 import Link from "next/link";
 import Markdown from "react-markdown";
 import Icon from "./Icon";
+import ImageWithSkeleton from "./ImageWithSkeleton";
 
 interface Props {
   project: Project;
@@ -24,13 +24,14 @@ export function ProjectCard({ project }: Props) {
       <CardHeader>
         {image && (
           <Link href={href || image}>
-            <Image
+            <ImageWithSkeleton
               src={image}
               alt={name}
               width={500}
               height={300}
               sizes="(max-width: 640px) calc(100vw - 4rem), 344px"
               quality={80}
+              containerClassName="h-40 w-full"
               className="h-40 w-full object-cover object-top"
             />
           </Link>

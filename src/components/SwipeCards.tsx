@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import { animate, motion, useMotionValue, useTransform } from "framer-motion";
 import { RefreshCw } from "lucide-react";
-import Image from "next/image";
 import { Dispatch, SetStateAction, useState } from "react";
+import ImageWithSkeleton from "./ImageWithSkeleton";
 
 interface SwipeCardsProps {
   className?: string;
@@ -104,7 +104,7 @@ const Card = ({
       }}
       onDragEnd={handleDragEnd}
     >
-      <Image
+      <ImageWithSkeleton
         src={url}
         alt="Photo of Ted"
         width={175}
@@ -112,7 +112,8 @@ const Card = ({
         sizes="175px"
         quality={80}
         draggable={false}
-        className="pointer-events-none h-full w-full select-none object-cover"
+        containerClassName="h-full w-full pointer-events-none"
+        className="h-full w-full select-none object-cover"
         priority={isFront}
       />
     </motion.div>
