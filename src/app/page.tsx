@@ -1,6 +1,7 @@
 import Experience from "@/components/Experience";
 import LinkWithIcon from "@/components/LinkWithIcon";
 import Posts from "@/components/Posts";
+import PostsSkeleton from "@/components/PostsSkeleton";
 import Projects from "@/components/Projects";
 import Socials from "@/components/Socials";
 import SwipeCards from "@/components/SwipeCards";
@@ -13,18 +14,22 @@ import {
   FileDown,
 } from "lucide-react";
 import Link from "next/link";
+import { Suspense } from "react";
 
 import homeContent from "@/data/home.json";
 
 const TED_BIRTH_YEAR = 1997;
 const LIMIT = 2; // max show 2
 
-export default async function Home() {
-  const currentAge = new Date().getFullYear() - TED_BIRTH_YEAR;
-
+async function RecentPosts() {
   const posts = (await getPosts())
     .filter((post) => !post.draft)
     .slice(0, LIMIT);
+  return <Posts posts={posts} />;
+}
+
+export default function Home() {
+  const currentAge = new Date().getFullYear() - TED_BIRTH_YEAR;
 
   return (
     <article className="mt-8 flex flex-col gap-16 pb-16">
@@ -103,7 +108,9 @@ export default async function Home() {
             text="view more"
           />
         </div>
-        <Posts posts={posts} />
+        <Suspense fallback={<PostsSkeleton rows={LIMIT} />}>
+          <RecentPosts />
+        </Suspense>
       </section>
     </article>
   );

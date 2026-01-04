@@ -23,6 +23,8 @@ export default function TimelineItem({ experience }: Props) {
           <AvatarImage
             src={logo}
             alt={name}
+            loading="lazy"
+            decoding="async"
             className="bg-background object-contain"
           />
           <AvatarFallback>{name[0]}</AvatarFallback>

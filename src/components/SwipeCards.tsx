@@ -1,10 +1,11 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
-import { cn } from "@/lib/utils"; 
+import { cn } from "@/lib/utils";
 import { animate, motion, useMotionValue, useTransform } from "framer-motion";
 import { RefreshCw } from "lucide-react";
 import { Dispatch, SetStateAction, useState } from "react";
+import ImageWithSkeleton from "./ImageWithSkeleton";
 
 interface SwipeCardsProps {
   className?: string;
@@ -32,9 +33,16 @@ const SwipeCards = ({ className }: SwipeCardsProps) => {
           </Button>
         </div>
       )}
-      {cards.map((card) => {
+      {cards.map((card, index) => {
+        const depth = cards.length - 1 - index;
         return (
-          <Card key={card.id} cards={cards} setCards={setCards} {...card} />
+          <Card
+            key={card.id}
+            cards={cards}
+            setCards={setCards}
+            depth={depth}
+            {...card}
+          />
         );
       })}
     </div>
@@ -46,11 +54,13 @@ const Card = ({
   url,
   setCards,
   cards,
+  depth,
 }: {
   id: number;
   url: string;
   setCards: Dispatch<SetStateAction<Card[]>>;
   cards: Card[];
+  depth: number;
 }) => {
   const x = useMotionValue(0);
 
@@ -79,10 +89,8 @@ const Card = ({
   };
 
   return (
-    <motion.img
-      src={url}
-      alt="Placeholder alt"
-      className="absolute h-[233px] w-[175px] origin-bottom rounded-lg bg-white object-cover hover:cursor-grab active:cursor-grabbing"
+    <motion.div
+      className="absolute h-[233px] w-[175px] origin-bottom overflow-hidden rounded-lg bg-white hover:cursor-grab active:cursor-grabbing"
       style={{
         gridRow: 1,
         gridColumn: 1,
@@ -94,7 +102,8 @@ const Card = ({
           : undefined,
       }}
       animate={{
-        scale: isFront ? 1 : 0.98,
+        // Ensure the top card is always the largest paint candidate.
+        scale: isFront ? 1 : Math.max(0.85, 0.94 - depth * 0.04),
       }}
       drag={isFront ? "x" : false}
       dragConstraints={{
@@ -104,7 +113,37 @@ const Card = ({
         bottom: 0,
       }}
       onDragEnd={handleDragEnd}
-    />
+    >
+      {isFront ? (
+        <ImageWithSkeleton
+          src={url}
+          alt="Photo of Ted"
+          width={175}
+          height={233}
+          sizes="175px"
+          quality={75}
+          draggable={false}
+          containerClassName="h-full w-full pointer-events-none"
+          className="h-full w-full select-none object-cover"
+          fetchPriority="high"
+          priority
+        />
+      ) : (
+        <ImageWithSkeleton
+          src={url}
+          alt=""
+          width={175}
+          height={233}
+          sizes="175px"
+          quality={70}
+          draggable={false}
+          containerClassName="h-full w-full pointer-events-none"
+          className="h-full w-full select-none object-cover"
+          fetchPriority="low"
+          loading="lazy"
+        />
+      )}
+    </motion.div>
   );
 };
 

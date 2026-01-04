@@ -26,7 +26,7 @@ export default function Posts({ posts }: Props) {
                       {/* Content Section */}
                       <div className="min-w-0 flex-1">
                         <div className="mb-2 flex items-center gap-2">
-                          <h3 className="line-clamp-2 text-lg font-semibold leading-tight transition-colors group-hover:text-primary">
+                          <h3 className="line-clamp-2 min-h-[2.5em] text-lg font-semibold leading-tight transition-colors group-hover:text-primary">
                             {post.title}
                           </h3>
 
@@ -38,36 +38,32 @@ export default function Posts({ posts }: Props) {
                           )}
                         </div>
 
-                        {post.summary && (
-                          <p className="mb-3 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
-                            {post.summary}
-                          </p>
-                        )}
+                        <p className="mb-3 line-clamp-2 min-h-[3.25em] text-sm leading-relaxed text-muted-foreground">
+                          {post.summary ?? ""}
+                        </p>
 
                         {/* Tags */}
-                        {post.tags && post.tags.length > 0 && (
-                          <div className="flex flex-wrap gap-1.5">
-                            {post.tags
-                              .slice(0, MAX_TAGS_DISPLAYED)
-                              .map((tag) => (
-                                <Badge
-                                  key={tag}
-                                  variant="secondary"
-                                  className="px-2 py-1 text-xs font-medium"
-                                >
-                                  {tag}
-                                </Badge>
-                              ))}
-                            {post.tags.length > MAX_TAGS_DISPLAYED && (
+                        <div className="flex min-h-6 flex-wrap gap-1.5">
+                          {post.tags
+                            ?.slice(0, MAX_TAGS_DISPLAYED)
+                            .map((tag) => (
                               <Badge
-                                variant="outline"
-                                className="px-2 py-1 text-xs"
+                                key={tag}
+                                variant="secondary"
+                                className="px-2 py-1 text-xs font-medium"
                               >
-                                +{post.tags.length - MAX_TAGS_DISPLAYED}
+                                {tag}
                               </Badge>
-                            )}
-                          </div>
-                        )}
+                            ))}
+                          {(post.tags?.length ?? 0) > MAX_TAGS_DISPLAYED && (
+                            <Badge
+                              variant="outline"
+                              className="px-2 py-1 text-xs"
+                            >
+                              +{post.tags.length - MAX_TAGS_DISPLAYED}
+                            </Badge>
+                          )}
+                        </div>
                       </div>
 
                       {/* Metadata Section */}
