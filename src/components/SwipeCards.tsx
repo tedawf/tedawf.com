@@ -110,11 +110,11 @@ const Card = ({
         width={175}
         height={233}
         sizes="175px"
-        quality={80}
+        quality={75}
         draggable={false}
         containerClassName="h-full w-full pointer-events-none"
         className="h-full w-full select-none object-cover"
-        priority={isFront}
+        priority
       />
     </motion.div>
   );

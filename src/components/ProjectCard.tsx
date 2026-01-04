@@ -30,7 +30,7 @@ export function ProjectCard({ project }: Props) {
               width={500}
               height={300}
               sizes="(max-width: 640px) calc(100vw - 4rem), 344px"
-              quality={80}
+              quality={75}
               containerClassName="h-40 w-full"
               className="h-40 w-full object-cover object-top"
             />
