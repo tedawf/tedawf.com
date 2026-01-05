@@ -11,11 +11,13 @@ import {
   ArrowLeftIcon,
   CalendarIcon,
   ClockIcon,
-  EyeIcon,
   Edit3Icon,
+  EyeIcon,
   UsersIcon,
 } from "lucide-react";
 import { notFound } from "next/navigation";
+
+export const revalidate = 600;
 
 export async function generateStaticParams() {
   const posts = await getPosts(10);
