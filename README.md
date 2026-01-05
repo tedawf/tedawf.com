@@ -60,6 +60,20 @@ npm run dev
 
 See .env.example
 
+### On-demand blog revalidation
+
+This repo caches blog pages for performance. To see edits immediately after the FastAPI/CouchDB pipeline updates a post, set `REVALIDATE_SECRET` and call the revalidation endpoint from the backend:
+
+```bash
+# Revalidate blog index + a specific post page
+curl -X POST 'http://localhost:3000/api/revalidate?secret=MY_SECRET' \
+  -H 'content-type: application/json' \
+  -d '{"slug":"my-post-slug"}'
+
+# Revalidate only the blog index (no body)
+curl -X POST 'http://localhost:3000/api/revalidate?secret=MY_SECRET'
+```
+
 ## Customization
 
 - Update personal info in `src/data/*.json`
@@ -87,7 +101,7 @@ I prefer [Vercel](https://vercel.com/) for Next.js projects:
 
 MIT
 
-## Featured on YouTube!
+## Featured on YouTube
 
 📺 **[Live Portfolio Review by Anthony Sistilli](https://www.youtube.com/watch?v=aUJiNyb3cvM&t=40s)** - Got reviewed live on his stream!
 

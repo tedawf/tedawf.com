@@ -3,6 +3,8 @@ import PostsWithSearch from "@/components/PostsWithSearch";
 import { getPosts } from "@/lib/posts";
 import { Suspense } from "react";
 
+export const revalidate = 600;
+
 async function BlogPosts() {
   const posts = await getPosts();
   return <PostsWithSearch posts={posts} />;
