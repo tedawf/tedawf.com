@@ -10,7 +10,7 @@ export function formatDate(date: string) {
     day: "numeric",
     month: "long",
     year: "numeric",
-    timezone: "UTC"
+    timeZone: "UTC"
   });
 }
 
